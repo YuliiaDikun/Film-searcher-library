@@ -1,10 +1,12 @@
 @import './utils/mixins';
 @import './utils/variables';
+@import './utils/visually-hidden';
 
 @import './base/common';
 @import './base/container';
 
 @import './layout/header';
+@import './layout/library-header';
 @import './layout/gallery';
 @import './layout/footer';
 @import './layout/modal-film';
