@@ -1,0 +1,84 @@
+.library-header {
+  height: 230px;
+  padding-top: 40px;
+  padding-bottom: 92px;
+
+  background-image: url('../images/library/library-bg-s.png');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/library/library-bg-s@2x.png');
+  }
+
+  @include media('tablet') {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/library/library-bg-m.png');
+
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url('../images/library/library-bg-m@2x.png');
+    }
+  }
+
+  @include media('desktop') {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/library/library-bg-l.png');
+
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url('../images/library/library-bg-l@2x.png');
+    }
+  }
+}
+.library-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 44px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(12 / 16);
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background-color: $accentColor;
+    filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+    border: none;
+  }
+}
