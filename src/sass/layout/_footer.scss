@@ -1,0 +1,32 @@
+.page__footer {
+  background-color: $lightGray;
+  padding: 30px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+  color: $footerGrayColor;
+}
+
+.footer__info {
+  display: block;
+  width: 245px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('tablet') {
+    width: fit-content;
+  }
+}
+
+.icon__heart {
+  width: 14px;
+  height: 12.75px;
+  margin: 0 10px;
+}
+
+.team__link {
+  text-decoration: underline;
+  color: inherit;
+}
+
+ 
