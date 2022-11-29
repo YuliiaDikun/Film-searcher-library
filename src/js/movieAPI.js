@@ -7,41 +7,31 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 export default class FilmApi {
   #API_KEY = 'f9c0bb738fb5ed39704a871786e56353';
   constructor() {
-    this.page = 1;
     this.query = '';
     this.id = null;
   }
-  get id() {
+  get idFilm() {
     return this.id;
   }
-  set id(newId) {
+  set idFilm(newId) {
     this.id = newId;
   }
-  get page() {
-    return this.page;
-  }
-  set page(newPage) {
-    this.page = newPage;
-  }
-  async getPopularFilms() {
+  async getPopularFilms(page = 1) {
     const { data } = await axios.get(
-      `/trending/movie/week?api_key=${this.#API_KEY}&page=${this.page}`
+      `/trending/movie/week?api_key=${this.#API_KEY}&page=${page}`
     );
-    console.log(data);
     return data;
   }
   async getFilmByID() {
     const { data } = await axios.get(
       `/movie/${this.id}?api_key=${this.#API_KEY}`
     );
-    console.log(data);
     return data;
   }
   async getFilmByQuery() {
     const { data } = await axios.get(
       `/search/movie?api_key=${this.#API_KEY}&query=${this.query}`
     );
-    console.log(data);
     return data;
   }
 }
