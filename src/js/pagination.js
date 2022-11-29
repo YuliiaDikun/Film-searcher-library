@@ -21,7 +21,7 @@ instance.on('afterMove', (event) => {
 
   filmAPI
   .getPopularFilms(currentPage)
-  .then(({ page, results, total_pages, total_results }) => {
+  .then(({results}) => {
     const markUp = createMarkUp(results);
     ulEl.insertAdjacentHTML('beforeend', markUp);
   })
