@@ -9,5 +9,6 @@ export async function getPopularFilms(page = 1) {
     `/trending/movie/week?api_key=${API_KEY}&page=${page}`
   );
   console.log(data);
+  return data;
 }
 getPopularFilms();
