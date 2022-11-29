@@ -1,5 +1,6 @@
 .modal-backdrop {
   width: 100%;
+  background-color: yellow;
 }
 .modal-container {
   position: relative;
@@ -10,6 +11,18 @@
   color: $primaryTextColor;
   font-weight: 500;
   font-family: Roboto;
+  background-color: aquamarine;
+
+  @include media('tablet') {
+    display: flex;
+    max-width: 704px;
+    padding: 40px 72px 40px 36px;
+  }
+
+  @include media('desktop') {
+    max-width: 806px;
+    padding: 40px 12px 40px 12px;
+  }
 }
 .modal-close-btn {
   position: absolute;
@@ -25,23 +38,58 @@
   align-items: center;
   width: 30px;
   height: 30px;
+  fill: $primaryTextColor;
 }
 .image {
   border-radius: 5px;
+
+  @include media('tablet') {
+    width: 264px;
+    height: 374px;
+    margin-right: 68px;
+  }
+  @include media('desktop') {
+    width: 375px;
+    height: 478px;
+    margin-right: 16px;
+  }
+}
+.movie-description {
+  margin-top: 6px;
+
+  @include media('tablet') {
+    max-width: 264px;
+    margin-top: 0;
+  }
+  @include media('desktop') {
+    max-width: 391px;
+  }
 }
 .movie-name {
   margin-top: 20px;
   font-size: 20px;
   line-height: 23.44px;
+
+  @include media('tablet') {
+    margin-top: 0;
+  }
+  @include media('desktop') {
+    font-size: 30px;
+    line-height: 35px;
+  }
 }
 .grid-container {
   display: grid;
   margin-top: 6px;
-  grid-row-gap: 10px;
+  grid-row-gap: 8px;
   grid-column-gap: 15px;
   grid-template-columns: auto auto;
   font-size: 12px;
   line-height: 16px;
+
+  @include media('tablet') {
+    margin-top: 20;
+  }
 }
 .movie-item_title {
   display: block;
@@ -58,9 +106,7 @@
   border-radius: 5px;
   padding: 1px 10px 1px 10px;
 }
-.movie-description {
-  margin-top: 6px;
-}
+
 .about_title {
   text-transform: uppercase;
   font-size: 12;
@@ -76,6 +122,10 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+
+  @include media('desktop') {
+    justify-content: flex-start;
+  }
 }
 .modal-button {
   max-width: 110px;
@@ -89,10 +139,24 @@
   border: 1px solid $primaryTextColor;
   padding-right: 11px;
   padding-left: 11px;
+  outline: none;
+  transition: background-color 500ms;
+  transition: color 500ms;
+  transition: border 500ms;
+
+  @include media('tablet') {
+    min-width: 125px;
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+  @include media('desktop') {
+    min-width: 136px;
+    margin-left: 8px;
+    margin-right: 7px;
+  }
 }
 .modal-button:hover,
 .modal-button:focus {
-  outline: none;
   border: none;
   background: $accentColor;
   color: $whiteColor;
