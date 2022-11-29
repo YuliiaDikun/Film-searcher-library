@@ -4,7 +4,7 @@
     <div class='img-container' width='240'>
       <button type='button' class='modal-close-btn'>
         <svg class='modal-close-icon' data-btn='close'>
-          <use href='./images/sprite.svg#icon-close'>
+          <use href='{{this.poster_path}}'>
           </use>
         </svg>
       </button>
@@ -19,27 +19,20 @@
       <div class='grid-container'>
         <i class='movie-item_title'>Vote / Votes</i>
         <div class='value'>
-          <span class='vote vote_focus'>7.5</span>
+          <span class='vote vote_focus'>{{this.vote_average}}</span>
           " / "
-          <span class='votes votes_unactive'>5.8</span>
+          <span class='votes votes_unactive'>{{this.vote_count}}</span>
         </div>
         <i class='movie-item_title'>Popularity</i>
         <span class='value'>PopularityValue</span>
         <i class='movie-item_title'>Original Title</i>
-        <span class='value'>Original Title Value</span>
+        <span class='value'>{{this.title}}</span>
         <i class='movie-item_title'>Genre</i>
-        <span class='value'>Genre Value</span>
+        <span class='value'>{{this.genre_ids}}</span>
       </div>
       <h3 class='about_title'>About</h3>
       <article class='about_text'>
-        Four of the West’s most infamous outlaws assemble to steal a huge stash
-        of gold from the most corrupt settlement of the gold rush towns. But not
-        all goes to plan one is killed and the other three escapes with bags of
-        gold hide out in the abandoned gold mine where they happen across
-        another gang of three – who themselves were planning to hit the very
-        same bank! As tensions rise, things go from bad to worse as they realise
-        the bags of gold are filled with lead... they’ve been double crossed –
-        but by who and how?</article>
+        {{this.overview}}</article>
 
       <div class='buttons-block'>
         <button class='modal-button'>add to Watched</button>
