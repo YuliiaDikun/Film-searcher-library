@@ -1,99 +1,184 @@
 .modal-backdrop {
   width: 100%;
+  background-color: yellow;
 }
 .modal-container {
   position: relative;
+
   padding: 48px 20px 40px 20px;
   max-width: 280px;
   margin-left: auto;
   margin-right: auto;
+
   color: $primaryTextColor;
   font-weight: 500;
-  font-family: Roboto;
+  background-color: aquamarine;
+
+  @include media('tablet') {
+    display: flex;
+
+    max-width: 704px;
+    padding: 40px 72px 40px 36px;
+  }
+
+  @include media('desktop') {
+    max-width: 806px;
+    padding: 40px 12px 40px 12px;
+  }
 }
 .modal-close-btn {
   position: absolute;
+
   right: 8px;
   top: 8px;
   width: 30px;
   height: 30px;
+
   background-color: $whiteColor;
 }
 .modal-close-icon {
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 30px;
   height: 30px;
+
+  fill: $primaryTextColor;
 }
 .image {
   border-radius: 5px;
+
+  @include media('tablet') {
+    width: 264px;
+    height: 374px;
+    margin-right: 68px;
+  }
+
+  @include media('desktop') {
+    width: 375px;
+    height: 478px;
+    margin-right: 16px;
+  }
+}
+.movie-description {
+  margin-top: 6px;
+
+  @include media('tablet') {
+    max-width: 264px;
+    margin-top: 0;
+  }
+
+  @include media('desktop') {
+    max-width: 391px;
+  }
 }
 .movie-name {
   margin-top: 20px;
   font-size: 20px;
-  line-height: 23.44px;
+  line-height: calc(23 / 20);
+
+  @include media('tablet') {
+    margin-top: 0;
+  }
+
+  @include media('desktop') {
+    font-size: 30px;
+    line-height: calc(35 / 30);
+  }
 }
 .grid-container {
   display: grid;
+
   margin-top: 6px;
-  grid-row-gap: 10px;
+  grid-row-gap: 8px;
   grid-column-gap: 15px;
   grid-template-columns: auto auto;
+
   font-size: 12px;
-  line-height: 16px;
+  line-height: calc(16 / 12);
+
+  @include media('tablet') {
+    margin-top: 20px;
+  }
 }
 .movie-item_title {
   display: block;
+
   color: $secondaryColor;
   font-style: normal;
 }
 .vote_focus {
+  padding: 1px 10px 1px 10px;
+
   background: $accentColor;
   border-radius: 5px;
-  padding: 1px 10px 1px 10px;
 }
 .votes_unactive {
+  padding: 1px 10px 1px 10px;
+
   background: $lightGray;
   border-radius: 5px;
-  padding: 1px 10px 1px 10px;
 }
-.movie-description {
-  margin-top: 6px;
-}
+
 .about_title {
-  text-transform: uppercase;
-  font-size: 12;
-  line-height: 16px;
   margin-top: 20px;
+
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: calc(16 / 12);
 }
 .about_text {
-  font-size: 12;
-  line-height: 20px;
   margin-top: 8px;
+
+  font-size: 12;
+  line-height: calc(20 / 12);
 }
 .buttons-block {
   display: flex;
   justify-content: space-between;
+
   margin-top: 20px;
+
+  @include media('desktop') {
+    justify-content: flex-start;
+  }
 }
 .modal-button {
   max-width: 110px;
   height: 44px;
+  padding-right: 11px;
+  padding-left: 11px;
+
   font-size: 12px;
-  line-height: 16px;
+  line-height: calc(16 / 12);
   border-radius: 5px;
   background-color: $whiteColor;
   font-weight: 500;
   text-transform: uppercase;
   border: 1px solid $primaryTextColor;
-  padding-right: 11px;
-  padding-left: 11px;
-}
-.modal-button:hover,
-.modal-button:focus {
   outline: none;
-  border: none;
-  background: $accentColor;
-  color: $whiteColor;
+
+  transition: background-color 500ms;
+  transition: color 500ms;
+  transition: border 500ms;
+
+  &:hover,
+  &:focus {
+    border: none;
+    background: $accentColor;
+    color: $whiteColor;
+  }
+
+  @include media('tablet') {
+    min-width: 125px;
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  @include media('desktop') {
+    min-width: 136px;
+    margin-left: 8px;
+    margin-right: 7px;
+  }
 }
