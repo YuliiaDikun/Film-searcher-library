@@ -1,18 +1,16 @@
-{{#each this}}
-  <li class='films__item' data-id={{this.id}}>
-    <div class='films__img'>
-      <img
-        src={{this.poster_path}}
-        alt={{this.original_title}}
-        loading='lazy'
-      />
-    </div>
-    <div class='films__description'>
-      <p class='films__name'>{{this.title}}</p>
-      <p class='films__info'>{{this.genre_ids}} | {{this.release_date}}</p>
-      {{#if this.vote-average}}
-        <span class='films__rating'>{{this.vote-average}}</span>
-      {{/if}}
-    </div>
-  </li>
-{{/each}}
+<li class='films__item' data-id={{id}}>
+  <div class='films__img'>
+    <img
+      src='https://image.tmdb.org/t/p/w500{{poster_path}}'
+      alt={{original_title}}
+      loading='lazy'
+    />
+  </div>
+  <div class='films__description'>
+    <p class='films__name'>{{title}}</p>
+    <p class='films__info'>{{genre_ids}} | {{release_date}}</p>
+    {{#if vote-average}}
+      <span class='films__rating'>{{vote-average}}</span>
+    {{/if}}
+  </div>
+</li>

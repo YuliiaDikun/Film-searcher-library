@@ -1,10 +1,13 @@
 import FilmApi from './js/movieAPI';
-import './js/form';
+import { createMarkUp } from './js/createMarkUp';
 
-const formAPI = new FilmApi();
+export const filmAPI = new FilmApi();
 const ulEl = document.querySelector('.films');
-formAPI
+filmAPI
   .getPopularFilms()
   .then(({ page, results, total_pages, total_results }) => {
     console.log(results);
-  });
+    const markUp = createMarkUp(results);
+    ulEl.insertAdjacentHTML('beforeend', markUp);
+  })
+  .catch(err => console.log(err.message));
