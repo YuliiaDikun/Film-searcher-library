@@ -8,4 +8,7 @@
 .tui-pagination .tui-is-selected, .tui-pagination strong {
   background: #ff6b0a;
   border-color: #ff6b0a;
+  &:hover {
+    background: #ff3b0a;
+  }
 }
