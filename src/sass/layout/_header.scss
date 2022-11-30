@@ -72,7 +72,7 @@
     line-height: calc(30 / 35);
     color: $whiteColor;
   }
-  @include media('decktop') {
+  @include media('desktop') {
     margin-left: 10px;
   }
 }

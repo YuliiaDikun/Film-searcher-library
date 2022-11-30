@@ -1,0 +1,43 @@
+<div class='modal-backdrop'>
+  <div class='modal-container'>
+
+    <div class='img-container' width='240'>
+      <button type='button' class='modal-close-btn'>
+        <svg class='modal-close-icon' data-btn='close'>
+          <use href='{{this.poster_path}}'>
+          </use>
+        </svg>
+      </button>
+      <img
+        class='image'
+        src='https://image.tmdb.org/t/p/w300/8dqXyslZ2hv49Oiob9UjlGSHSTR.jpg'
+        alt='movie poster'
+      />
+    </div>
+    <div class='movie-description'>
+      <h2 class='movie-name'>A FISTFUL OF LEAD</h2>
+      <div class='grid-container'>
+        <i class='movie-item_title'>Vote / Votes</i>
+        <div class='value'>
+          <span class='vote vote_focus'>{{this.vote_average}}</span>
+          " / "
+          <span class='votes votes_unactive'>{{this.vote_count}}</span>
+        </div>
+        <i class='movie-item_title'>Popularity</i>
+        <span class='value'>PopularityValue</span>
+        <i class='movie-item_title'>Original Title</i>
+        <span class='value'>{{this.title}}</span>
+        <i class='movie-item_title'>Genre</i>
+        <span class='value'>{{this.genre_ids}}</span>
+      </div>
+      <h3 class='about_title'>About</h3>
+      <article class='about_text'>
+        {{this.overview}}</article>
+
+      <div class='buttons-block'>
+        <button class='modal-button'>add to Watched</button>
+        <button class='modal-button'>add to queue</button>
+      </div>
+    </div>
+  </div>
+</div>
