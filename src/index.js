@@ -7,27 +7,24 @@ import { createPagination } from './js/pagination';
 import { spinnerPlay, spinnerStop } from './js/spinner.js';
 import './js/form';
 import './js/pagination';
-import './js/modal-open';
-import './js/localStorage';
+
 
 import fixArray from './js/fixArray';
 
 export const filmAPI = new FilmApi();
 const ulEl = document.querySelector('.films');
-
 initPage();
 async function initPage() {
   try {
     spinnerPlay();
     const { page, results, total_pages, total_results } =
       await filmAPI.getPopularFilms();
-
     const correctFilmsList = fixArray(results);
     const markUp = createMarkUp(correctFilmsList);
-
     ulEl.insertAdjacentHTML('beforeend', markUp);
     createPagination(total_results);
   } catch (error) {
+    Notify.failure(error.message);
   } finally {
     spinnerStop();
   }
