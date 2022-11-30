@@ -2,12 +2,18 @@ import FilmApi from './movieAPI';
 import { createMarkUp } from './createMarkUp';
 import { createPagination } from './pagination';
 import Pagination from 'tui-pagination';
+import fixArray from './fixArray';
+import { spinnerPlay, spinnerStop } from './spinner.js';
+import Notiflix from 'notiflix';
+
 const container = document.getElementById('tui-pagination-container');
 const debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 300;
 const formEl = document.querySelector('.film-form');
 const ulEl = document.querySelector('.films');
+
 const filmAPIByQuery = new FilmApi();
+
 formEl.addEventListener('input', debounce(onFormInput, DEBOUNCE_DELAY));
 
 function createQueryPagination(total_results) {
@@ -21,44 +27,48 @@ function createQueryPagination(total_results) {
     centerAlign: false,
   });
 
-  instance.on('afterMove', (event) => {
+  instance.on('afterMove', onInstanceEvent);
+}
+
+async function onInstanceEvent(event) {
+  try {
     ulEl.replaceChildren([]);
     currentPage = event.page;
+    spinnerPlay();
+    const { results } = await filmAPIByQuery.getFilmByQuery(currentPage);
 
-    filmAPIByQuery
-    .getFilmByQuery(currentPage)
-    .then(({results}) => {
-      const markUp = createMarkUp(results);
-      ulEl.insertAdjacentHTML('beforeend', markUp);
-    })
-    .catch(err => console.log(err.message));
-  });
-};
-
-function onFormInput(e) {
-  if (!e.target.value) {
-    filmAPIByQuery
-      .getPopularFilms()
-      .then(({ page, results, total_pages, total_results }) => {
-        console.log(results);
-        const markUp = createMarkUp(results);
-        ulEl.innerHTML = markUp;
-        createPagination(total_results);
-      })
-      .catch(err => console.log(err.message));
-    return;
+    const correctFilmsList = fixArray(results);
+    const markUp = createMarkUp(correctFilmsList);
+    ulEl.insertAdjacentHTML('beforeend', markUp);
+  } catch (error) {
+    Notify.failure(error.message);
+  } finally {
+    spinnerStop();
   }
-  const searchFilm = e.target.value.trim();
-  console.log(searchFilm);
-  filmAPIByQuery.query = searchFilm;
-  console.log(filmAPIByQuery);
-  filmAPIByQuery
-    .getFilmByQuery()
-    .then(({ page, results, total_pages, total_results }) => {
-      console.log(results);
-      const markUp = createMarkUp(results);
+}
+
+async function onFormInput(e) {
+  try {
+    if (!e.target.value) {
+      const { results, total_results } = await filmAPIByQuery.getPopularFilms();
+      const correctFilmsList = fixArray(results);
+      const markUp = createMarkUp(correctFilmsList);
+      ulEl.innerHTML = markUp;
+      createPagination(total_results);
+      return;
+    } else {
+      const searchFilm = e.target.value.trim();
+      filmAPIByQuery.query = searchFilm;
+
+      const { results, total_results } = await filmAPIByQuery.getFilmByQuery();
+      const correctFilmsList = fixArray(results);
+      const markUp = createMarkUp(correctFilmsList);
       ulEl.innerHTML = markUp;
       createQueryPagination(total_results);
-    })
-    .catch(err => console.log(err.message));
+    }
+  } catch (error) {
+    Notiflix.Notify.failure(error.message);
+  } finally {
+    spinnerStop();
+  }
 }
