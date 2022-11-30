@@ -28,9 +28,9 @@ export default class FilmApi {
     );
     return data;
   }
-  async getFilmByQuery() {
+  async getFilmByQuery(page = 1) {
     const { data } = await axios.get(
-      `/search/movie?api_key=${this.#API_KEY}&query=${this.query}`
+      `/search/movie?api_key=${this.#API_KEY}&query=${this.query}&page=${page}`
     );
     return data;
   }

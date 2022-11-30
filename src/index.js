@@ -1,5 +1,6 @@
 import FilmApi from './js/movieAPI';
 import { createMarkUp } from './js/createMarkUp';
+import { createPagination } from './js/pagination';
 import './js/form';
 import './js/pagination';
 
@@ -11,5 +12,6 @@ filmAPI
     console.log(results);
     const markUp = createMarkUp(results);
     ulEl.insertAdjacentHTML('beforeend', markUp);
+    createPagination(total_results);
   })
   .catch(err => console.log(err.message));
