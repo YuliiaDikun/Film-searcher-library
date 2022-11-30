@@ -7,6 +7,9 @@ import { createPagination } from './js/pagination';
 import { spinnerPlay, spinnerStop } from './js/spinner.js';
 import './js/form';
 import './js/pagination';
+import './js/modal-open';
+import './js/localStorage';
+
 import fixArray from './js/fixArray';
 
 export const filmAPI = new FilmApi();
@@ -29,4 +32,3 @@ async function initPage() {
     spinnerStop();
   }
 }
-
