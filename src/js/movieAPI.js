@@ -34,7 +34,7 @@ export default class FilmApi {
     );
     return data;
   }
-  async getGenreById() {
+  async getGenres() {
     const { data } = await axios.get(
       `/genre/movie/list?api_key=${this.#API_KEY}&language=en-US`
     );
