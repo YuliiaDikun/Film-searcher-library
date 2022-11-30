@@ -1,16 +1,26 @@
-const WAТСHED_KEY = 'H';
-const QUEUE_KEY = 'H';
-
 const watchedBnt = document.querySelector('.modal-button_watched');
 const queuedBnt = document.querySelector('.modal-button_queue');
 
-watchedBnt.addEventListener('click', onWatchedBtnClick);
-queuedBnt.addEventListener('click', onQueueBtnClick);
+watchedBnt.addEventListener('click', () => onModalBtnClick('WAТСHED_KEY', id));
+queuedBnt.addEventListener('click', () => onModalBtnClick('QUEUE_KEY', id));
 
-const watchedList = localStorage.getItem(WAТСHED_KEY);
-const queueList = localStorage.getItem(QUEUE_KEY);
+const watchedList = [];
+const queueList = [];
 
-// const save = (key, value) => {
+localStorage.setItem('WAТСHED_KEY', watchedList);
+localStorage.setItem('QUEUE_KEY', queueList);
+
+function onModalBtnClick(key, value) {
+  const savedArray = localStorage.getItem(key);
+  if (savedArray.includes(value)) {
+    return;
+  } else {
+    value = savedArray.push(value);
+  }
+  localStorage.setItem(key, value);
+}
+
+// const saveInStorage = (key, value) => {
 //   try {
 //     const serializedState = JSON.stringify(value);
 //     localStorage.setItem(key, serializedState);
