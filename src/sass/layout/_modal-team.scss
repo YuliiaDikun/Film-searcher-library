@@ -9,9 +9,13 @@
    @include media('tablet') {
     width: 704px;
    }
+   @include media('desktop') {
+    width: 806px;
+   }
 }
 
 .modal__team-btn {
+  cursor: pointer;
   position: absolute;
   right: 10px;
   top: 10px;
@@ -33,6 +37,9 @@
     width: 704px;
     gap: 60px;
     justify-content: space-around;
+   }
+   @include media('desktop') {
+    width: 806px;
    }
 }
 
@@ -63,5 +70,10 @@
 }
 
 .modal__backdrop{
-  background-color: #000;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
