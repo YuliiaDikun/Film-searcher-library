@@ -35,6 +35,7 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
+
   background-color: $whiteColor;
 }
 .modal-close-icon {
@@ -45,7 +46,7 @@
   width: 30px;
   height: 30px;
 
-  fill: $primaryTextColor;
+  stroke: #000;
 }
 .image {
   border-radius: 5px;

@@ -1,16 +1,15 @@
 <div class='modal-backdrop'>
   <div class='modal-container'>
-
     <div class='img-container' width='240'>
       <button type='button' class='modal-close-btn'>
         <svg class='modal-close-icon' data-btn='close'>
-          <use href='{{this.poster_path}}'>
+          <use href="../images/sprite.svg#icon-close"></use>
           </use>
         </svg>
       </button>
       <img
         class='image'
-        src='https://image.tmdb.org/t/p/w300/8dqXyslZ2hv49Oiob9UjlGSHSTR.jpg'
+        src='https://image.tmdb.org/t/p/w300/{{this.poster_path}}'
         alt='{{this.title}}'
       />
     </div>
