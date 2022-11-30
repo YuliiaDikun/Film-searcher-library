@@ -1,3 +1,5 @@
+import './js/movieAPI';
+import './js/modal-team';
 import FilmApi from './js/movieAPI';
 import Notiflix from 'notiflix';
 import { createMarkUp } from './js/createMarkUp';
@@ -27,3 +29,4 @@ async function initPage() {
     spinnerStop();
   }
 }
+
