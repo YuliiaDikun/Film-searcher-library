@@ -3,6 +3,8 @@ import { createMarkUp } from './js/createMarkUp';
 import { createPagination } from './js/pagination';
 import './js/form';
 import './js/pagination';
+import './js/modal-open';
+import './js/localStorage';
 
 export const filmAPI = new FilmApi();
 const ulEl = document.querySelector('.films');

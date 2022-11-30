@@ -1,23 +1,28 @@
-const watchedBnt = document.querySelector('.modal-button_watched');
-const queuedBnt = document.querySelector('.modal-button_queue');
+const watchedBnt = document.querySelector('.modal-button-watched');
+const queuedBnt = document.querySelector('.modal-button-queue');
 
-watchedBnt.addEventListener('click', () => onModalBtnClick('WAТСHED_KEY', id));
-queuedBnt.addEventListener('click', () => onModalBtnClick('QUEUE_KEY', id));
+watchedBnt.addEventListener('click', () =>
+  onModalBtnClick('WAТСHED_KEY', 'hello')
+);
+queuedBnt.addEventListener('click', () =>
+  onModalBtnClick('QUEUE_KEY', 'hello')
+);
 
-const watchedList = [];
-const queueList = [];
+let watchedList = [];
+let queueList = [];
 
-localStorage.setItem('WAТСHED_KEY', watchedList);
-localStorage.setItem('QUEUE_KEY', queueList);
+// localStorage.setItem('WAТСHED_KEY', JSON.stringify(watchedList));
+// localStorage.setItem('QUEUE_KEY', JSON.stringify(queueList));
 
 function onModalBtnClick(key, value) {
-  const savedArray = localStorage.getItem(key);
+  let savedArray = localStorage.getItem(key);
+  savedArray = savedArray ? JSON.parse(savedArray) : [];
   if (savedArray.includes(value)) {
     return;
   } else {
-    value = savedArray.push(value);
+    savedArray.push(value);
   }
-  localStorage.setItem(key, value);
+  localStorage.setItem(key, JSON.stringify(savedArray));
 }
 
 // const saveInStorage = (key, value) => {
