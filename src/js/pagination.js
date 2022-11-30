@@ -1,6 +1,7 @@
 import Pagination from 'tui-pagination';
 import FilmApi from './movieAPI';
 import { createMarkUp } from './createMarkUp';
+import fixArray from './fixArray';
 import { spinnerPlay, spinnerStop } from './spinner.js';
 import Notiflix from 'notiflix';
 
@@ -19,18 +20,22 @@ export function createPagination(total_results) {
     centerAlign: false,
   });
 
-  instance.on('afterMove', event => {
+  instance.on('afterMove', onInstansEvent);
+}
+
+async function onInstansEvent(event) {
+  try {
     ulEl.replaceChildren([]);
     currentPage = event.page;
+    spinnerPlay();
+    const { results } = await filmAPI.getPopularFilms(currentPage);
 
-    filmAPI
-      .getPopularFilms(currentPage)
-      .then(({ results }) => {
-        spinnerPlay();
-        const markUp = createMarkUp(results);
-        ulEl.insertAdjacentHTML('beforeend', markUp);
-      })
-      .catch(err => Notiflix.Notify.failure(err.message))
-      .finally(spinnerStop());
-  });
+    const correctFilmsList = fixArray(results);
+    const markUp = createMarkUp(correctFilmsList);
+    ulEl.insertAdjacentHTML('beforeend', markUp);
+  } catch (error) {
+    Notify.failure(error.message);
+  } finally {
+    spinnerStop();
+  }
 }

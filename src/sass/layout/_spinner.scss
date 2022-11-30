@@ -44,7 +44,7 @@
 }
 .backdrop,
 .spinner-backdrop {
-  background-color: rgba(127, 255, 212, 0.705);
+  background-color: $blackItemShadow;
   position: fixed;
   top: 0;
   left: 0;
