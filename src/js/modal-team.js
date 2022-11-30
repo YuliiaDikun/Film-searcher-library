@@ -1,17 +1,15 @@
 const openModal = document.querySelector('.js-team-link');
-const modalWindow = document.querySelector('#js-modal')
-const btnClose = document.querySelector('#modal-btn')
+const modalWindow = document.querySelector('#js-modal');
+const btnClose = document.querySelector('#modal-btn');
 
-const onTeamClick = (event) => {
-  modalWindow.classList.remove('visually-hidden');
-}
+const onTeamClick = event => {
+  modalWindow.classList.remove('is-hidden');
+};
 
-openModal.addEventListener('click', onTeamClick)
-
+openModal.addEventListener('click', onTeamClick);
 
 const onCloseBtn = () => {
-  modalWindow.classList.add('visually-hidden');
-}
+  modalWindow.classList.add('is-hidden');
+};
 
-btnClose.addEventListener('click', onCloseBtn)
-
+btnClose.addEventListener('click', onCloseBtn);
