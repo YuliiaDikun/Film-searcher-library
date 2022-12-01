@@ -1,13 +1,3 @@
-// const watchedBnt = document.querySelector('.modal-button-watched');
-// const queuedBnt = document.querySelector('.modal-button-queue');
-
-// watchedBnt.addEventListener('click', () =>
-//   onModalBtnClick('WAТСHED_KEY', 'hello')
-// );
-// queuedBnt.addEventListener('click', () =>
-//   onModalBtnClick('QUEUE_KEY', 'hello')
-// );
-
 let watchedList = [];
 let queueList = [];
 
@@ -21,3 +11,21 @@ function onModalBtnClick(key, value) {
   }
   localStorage.setItem(key, JSON.stringify(savedArray));
 }
+
+export function setLocalStorage(key, value) {
+    try {
+      const serializedState = JSON.stringify(value);
+      localStorage.setItem(key, serializedState);
+    } catch (error) {
+      console.error('Set state error: ', error.message);
+    }
+  }
+  
+export function getLocalStorage(key) {
+    try {
+      const serializedState = localStorage.getItem(key);
+      return serializedState ? JSON.parse(serializedState) : undefined;
+    } catch (error) {
+      console.error('Get state error: ', error.message);
+    }
+  }
