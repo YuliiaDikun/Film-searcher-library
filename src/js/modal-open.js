@@ -69,11 +69,7 @@ async function onFimlsListClick(evt) {
         } else{
             watchedFilms.push(filmMarkUp);
             setLocalStorage(LOCAL_WATCHED, watchedFilms);
-        }
-        console.log(watchedList);
-        console.log(watchedFilms);
-
-        
+        }       
       }
       if (event.target.dataset.name === 'queue') {
         queueList.push(id);
@@ -90,9 +86,7 @@ async function onFimlsListClick(evt) {
         } else{
             queueFilms.push(filmMarkUp);
             setLocalStorage(LOCAL_QUEUE, queueFilms);
-        }
-        console.log(queueList);
-        console.log(queueFilms);
+        }        
       }     
   }
   modal.addEventListener('click', onModalFilmClick);

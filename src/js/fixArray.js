@@ -19,8 +19,7 @@ export default function fixArray(array) {
           ? `${validGenres[0]}, ${validGenres[1]}, Other`
           : `${validGenres.join(', ')}`;
       film.genre_ids = genres;
-    }
-    film.info = JSON.stringify(film);
+    }    
     return film;
   });
 }
