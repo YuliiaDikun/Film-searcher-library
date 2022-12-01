@@ -3,8 +3,8 @@
     <div class='img-container' width='240'>
       <button type='button' class='modal-close-btn'>
         <svg class='modal-close-icon' data-btn='close'>
-          <use href="../images/sprite.svg#icon-close"></use>
-          </use>
+          <path d='M8 8L22 22' stroke='black' stroke-width='2'></path>
+          <path d='M8 22L22 8' stroke='black' stroke-width='2'></path>
         </svg>
       </button>
       <img
@@ -34,8 +34,8 @@
         {{this.overview}}</article>
 
       <div class='buttons-block'>
-        <button class='modal-button'>add to Watched</button>
-        <button class='modal-button'>add to queue</button>
+        <button class='modal-button' data-name='watched'>add to Watched</button>
+        <button class='modal-button' data-name='queue'>add to queue</button>
       </div>
     </div>
   </div>
