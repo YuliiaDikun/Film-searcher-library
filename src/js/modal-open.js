@@ -1,6 +1,7 @@
 import Notiflix from 'notiflix';
 import FilmApi from './movieAPI';
 import filmCard from '../templates/modal-film.hbs';
+import fixObject from './fixObject';
 
 const ulEl = document.querySelector('.films');
 
@@ -16,7 +17,9 @@ async function onFimlsListClick(evt) {
     let id = evt.target.closest('li').dataset.id;
     filmAPIByID.idFilm = id;
     const film = await filmAPIByID.getFilmByID();
-    const filmMarkUp = filmCard(film);
+    
+    const fixedFilm = fixObject(film);
+    const filmMarkUp = filmCard(fixedFilm);
 
     document.querySelector('body').insertAdjacentHTML('beforeend', filmMarkUp);
 
