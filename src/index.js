@@ -8,12 +8,11 @@ import { spinnerPlay, spinnerStop } from './js/spinner.js';
 import './js/form';
 import './js/pagination';
 
-
 import fixArray from './js/fixArray';
 
 export const filmAPI = new FilmApi();
 const ulEl = document.querySelector('.films');
-initPage();
+
 async function initPage() {
   try {
     spinnerPlay();
@@ -24,8 +23,9 @@ async function initPage() {
     ulEl.insertAdjacentHTML('beforeend', markUp);
     createPagination(total_results);
   } catch (error) {
-    Notify.failure(error.message);
+    Notiflix.Notify.failure(error.message);
   } finally {
     spinnerStop();
   }
 }
+initPage();
