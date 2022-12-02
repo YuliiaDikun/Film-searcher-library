@@ -5,8 +5,8 @@ import fixObject from './fixObject';
 import { setLocalStorage, getLocalStorage } from './localStorage';
 
 const ulEl = document.querySelector('.films');
-export const LOCAL_WATCHED = 'watchedList';
-export const LOCAL_QUEUE = 'queueList';
+const LOCAL_WATCHED = 'watchedList';
+const LOCAL_QUEUE = 'queueList';
 
 ulEl.addEventListener('click', onFimlsListClick);
 
