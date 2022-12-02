@@ -1,4 +1,16 @@
 body {
   color: $primaryTextColor;
   font-family: 'Roboto', sans-serif;
+  behavior: smooth;
+  overflow-y: auto;
+}
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  > main {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+  }
 }

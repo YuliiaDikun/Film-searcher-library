@@ -21,11 +21,17 @@ ulEl.addEventListener('click', onUlElClick);
 const filmAPIByID = new FilmApi();
 
 function onWatchedLibrary() {
+  queueLibraryBtn.classList.remove('is-active');
+  watchedLibraryBtn.classList.add('is-active');
+
   createFilmList(LOCAL_WATCHED);
   setLocalStorage(LOCAL_LIST, 'watched');
 }
 
 function onQueueLibrary() {
+  watchedLibraryBtn.classList.remove('is-active');
+  queueLibraryBtn.classList.add('is-active');
+
   createFilmList(LOCAL_QUEUE);
   setLocalStorage(LOCAL_LIST, 'queue');
 }
@@ -81,8 +87,10 @@ async function onUlElClick(e) {
     const onQueueBtn = event => {
       if (selectedList === 'queue') {
         setFilmToLocalStorage(LOCAL_WATCHED, id, fixedFilm, onClose);
+        removeFromLocal(LOCAL_QUEUE, id, item, modal);
       } else {
         setFilmToLocalStorage(LOCAL_QUEUE, id, fixedFilm, onClose);
+        removeFromLocal(LOCAL_WATCHED, id, item, modal);
       }
     };
     modal.addEventListener('click', onModalFilmClick);
