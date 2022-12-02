@@ -3,6 +3,7 @@ import FilmApi from './movieAPI';
 import filmCard from '../templates/modal-film.hbs';
 import fixObject from './fixObject';
 import { setLocalStorage, getLocalStorage } from './localStorage';
+import setFilmToLocalStorage from './setFilmToLocalStorage';
 
 const ulEl = document.querySelector('.films');
 const LOCAL_WATCHED = 'watchedList';
@@ -50,38 +51,10 @@ async function onFimlsListClick(evt) {
       }
 
       if (event.target.dataset.name === 'watched') {
-        let watchedLocalArray = getLocalStorage(LOCAL_WATCHED);
-        watchedLocalArray = watchedLocalArray ? watchedLocalArray : [];
-        if (!watchedLocalArray.length) {
-          watchedLocalArray.push(fixedFilm);
-          setLocalStorage(LOCAL_WATCHED, watchedLocalArray);
-        } else {
-          const hasId = watchedLocalArray.some(film => film.id === Number(id));
-          if (hasId) {
-            Notiflix.Notify.failure('Already in list!');
-          }
-          if (!hasId) {
-            watchedLocalArray.push(fixedFilm);
-            setLocalStorage(LOCAL_WATCHED, watchedLocalArray);
-          }
-        }
+        setFilmToLocalStorage(LOCAL_WATCHED, id, fixedFilm);
       }
       if (event.target.dataset.name === 'queue') {
-        let queueLocalArray = getLocalStorage(LOCAL_QUEUE);
-        queueLocalArray = queueLocalArray ? queueLocalArray : [];
-        if (!queueLocalArray.length) {
-          queueLocalArray.push(fixedFilm);
-          setLocalStorage(LOCAL_QUEUE, queueLocalArray);
-        } else {
-          const hasId = queueLocalArray.some(film => film.id === Number(id));
-          if (hasId) {
-            Notiflix.Notify.failure('Already in queue!');
-          }
-          if (!hasId) {
-            queueLocalArray.push(fixedFilm);
-            setLocalStorage(LOCAL_QUEUE, queueLocalArray);
-          }
-        }
+        setFilmToLocalStorage(LOCAL_QUEUE, id, fixedFilm);
       }
     };
     modal.addEventListener('click', onModalFilmClick);

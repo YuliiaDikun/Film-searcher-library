@@ -7,6 +7,11 @@ export default function fixObject(film) {
     const vote = film.vote_average;
     film.vote_average = vote.toFixed(1);
   }
+  if (film.release_date) {
+    const date = film.release_date;
+    const year = date.slice(0, 4);
+    film.release_date = year;
+  }
   if (film.popularity) {
     const rating = film.popularity;
     film.popularity = rating.toFixed(1);
