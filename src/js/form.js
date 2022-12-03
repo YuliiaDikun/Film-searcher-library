@@ -27,24 +27,22 @@ function createQueryPagination(total_results) {
     centerAlign: false,
   });
 
-  instance.on('afterMove', onInstanceEvent);
-}
+  instance.on('afterMove', async function onInstanceEvent(event) {
+    try {
+      ulEl.replaceChildren([]);
+      currentPage = event.page;
+      spinnerPlay();
+      const { results } = await filmAPIByQuery.getFilmByQuery(currentPage);
 
-async function onInstanceEvent(event) {
-  try {
-    ulEl.replaceChildren([]);
-    currentPage = event.page;
-    spinnerPlay();
-    const { results } = await filmAPIByQuery.getFilmByQuery(currentPage);
-
-    const correctFilmsList = fixArray(results);
-    const markUp = createMarkUp(correctFilmsList);
-    ulEl.insertAdjacentHTML('beforeend', markUp);
-  } catch (error) {
-    Notiflix.Notify.failure(error.message);
-  } finally {
-    spinnerStop();
-  }
+      const correctFilmsList = fixArray(results);
+      const markUp = createMarkUp(correctFilmsList);
+      ulEl.insertAdjacentHTML('beforeend', markUp);
+    } catch (error) {
+      Notiflix.Notify.failure(error.message);
+    } finally {
+      spinnerStop();
+    }
+  });
 }
 
 async function onFormInput(e) {
