@@ -26,17 +26,24 @@ async function onFimlsListClick(evt) {
     const film = await filmAPIByID.getFilmByID();
     // =============================================================
     const video = await filmAPIByID.getTrailerById();
-    let trailerKey = video.results[0].key;
-    function youtubeLink(key) {
-      let movie;
-      movie = `https://www.youtube.com/embed/${key}`;
-      return movie;
+    let arr = video.results;
+    function findTrailer(arr) {
+      return arr
+        .map(el => {
+          return el;
+        })
+        .find(el => el.name === 'Official Trailer');
+    }
+    let objectWithTrailer = findTrailer(arr);
+    let trailerKey = objectWithTrailer.key;
+    function youtubeLink(videoKey) {
+      return `https://www.youtube.com/embed/${videoKey}`;
     }
     const movieLink = youtubeLink(trailerKey);
 
     const fixedFilm = fixObject(film);
     fixedFilm.movie = movieLink;
-    console.log(fixedFilm);
+
     const filmMarkUp = filmCard(fixedFilm);
     document.querySelector('body').insertAdjacentHTML('beforeend', filmMarkUp);
 
