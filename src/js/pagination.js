@@ -28,7 +28,7 @@ export function createPagination(total_results) {
       spinnerPlay();
       const { results } = await filmAPI.getPopularFilms(currentPage);
 
-      const correctFilmsList = fixArray(results);
+      const correctFilmsList = await fixArray(results);
       const markUp = createMarkUp(correctFilmsList);
       ulEl.insertAdjacentHTML('beforeend', markUp);
     } catch (error) {
