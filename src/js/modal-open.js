@@ -47,9 +47,9 @@ async function onFimlsListClick(evt) {
     const filmMarkUp = filmCard(fixedFilm);
     document.querySelector('body').insertAdjacentHTML('beforeend', filmMarkUp);
 
-    let youtubeBtnRef = document.querySelector('.trailerShow');
+    let trailerBtnRef = document.querySelector('.trailerShow');
     let iframeRef = document.querySelector('.hidden');
-    youtubeBtnRef.addEventListener('click', () => {
+    trailerBtnRef.addEventListener('click', () => {
       iframeRef.classList.toggle('trailer__youtube');
       // modal.scrollTo(0, 400);
     });
