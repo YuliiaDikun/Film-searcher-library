@@ -41,7 +41,7 @@ async function onInstanceEvent(event) {
     const markUp = createMarkUp(correctFilmsList);
     ulEl.insertAdjacentHTML('beforeend', markUp);
   } catch (error) {
-    Notify.failure(error.message);
+    Notiflix.Notify.failure(error.message);
   } finally {
     spinnerStop();
   }

@@ -31,7 +31,6 @@ async function onFimlsListClick(evt) {
     document.querySelector('body').insertAdjacentHTML('beforeend', filmMarkUp);
 
     let modal = document.querySelector('.modal-backdrop');
-    let closeBtn = document.querySelector('.modal-close-btn');
 
     const onClose = event => {
       if (event.code === 'Escape') {

@@ -1,17 +1,20 @@
 body.light-theme {
-  background-color: #fff;
+  background-color: $whiteColor;
   color: #333333;
 }
 
 body.dark-theme {
   // background-color: #333333;
   background-color: #400202;
-  color: #fff;
+  color: $whiteColor;
   .films__name {
-    color: #fff;
+    color: $whiteColor;
   }
   .theme-switch__icon {
-    color: #d3d3d4;
+    color: $lightGray;
+  }
+  .tui-pagination .tui-page-btn {
+    color: $lightGray;
   }
 }
 
