@@ -104,3 +104,23 @@ li {
 .theme-switch__toggle:active + .theme-switch__track {
   box-shadow: 0 0 0 3px #f38021;
 }
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 5px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+.top-btn {
+  width: 30px;
+  height: 30px;
+  fill: #000;
+}

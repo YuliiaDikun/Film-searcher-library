@@ -8,6 +8,7 @@ import { spinnerPlay, spinnerStop } from './js/spinner.js';
 import './js/form';
 import './js/pagination';
 import './js/theme';
+import './js/topBtn';
 
 import fixArray from './js/fixArray';
 
