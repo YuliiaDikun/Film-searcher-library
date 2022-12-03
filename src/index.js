@@ -7,6 +7,7 @@ import { createPagination } from './js/pagination';
 import { spinnerPlay, spinnerStop } from './js/spinner.js';
 import './js/form';
 import './js/pagination';
+import './js/theme';
 
 import fixArray from './js/fixArray';
 
