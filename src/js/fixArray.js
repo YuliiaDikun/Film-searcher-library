@@ -1,5 +1,5 @@
 import { SESSION_KEY } from './getGenres';
-const genresListSaved = sessionStorage.getItem(SESSION_KEY);
+const genresListSaved = localStorage.getItem(SESSION_KEY);
 const parsedGenresList = JSON.parse(genresListSaved);
 
 export default function fixArray(array) {
