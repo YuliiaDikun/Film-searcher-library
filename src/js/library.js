@@ -50,10 +50,36 @@ async function onUlElClick(e) {
     filmAPIByID.idFilm = id;
     const film = await filmAPIByID.getFilmByID();
 
+    const video = await filmAPIByID.getTrailerById();
+    let arr = video.results;
+    function findTrailer(arr) {
+      return arr
+        .map(el => {
+          return el;
+        })
+        .find(el => el.name === 'Official Trailer');
+    }
+    let objectWithTrailer = findTrailer(arr);
+    let trailerKey = objectWithTrailer.key;
+    function youtubeLink(videoKey) {
+      return `https://www.youtube.com/embed/${videoKey}`;
+    }
+    const movieLink = youtubeLink(trailerKey);
+
     const fixedFilm = fixObject(film);
+    fixedFilm.movie = movieLink;
+
     const filmMarkUp = filmCard(fixedFilm);
 
     document.querySelector('body').insertAdjacentHTML('beforeend', filmMarkUp);
+
+    let trailerBtnRef = document.querySelector('.trailerShow');
+    let iframeRef = document.querySelector('.hidden');
+    trailerBtnRef.addEventListener('click', () => {
+      iframeRef.classList.toggle('trailer__youtube');
+      // modal.scrollTo(0, 400);
+    });
+
     let modal = document.querySelector('.modal-backdrop');
     let watchedBtn = document.querySelector('[data-name="watched"]');
     let queueBtn = document.querySelector('[data-name="queue"]');
