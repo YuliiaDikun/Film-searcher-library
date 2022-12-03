@@ -2,7 +2,7 @@ import Notiflix from 'notiflix';
 import FilmApi from './movieAPI';
 import filmCard from '../templates/modal-film.hbs';
 import fixObject from './fixObject';
-import { setLocalStorage, getLocalStorage } from './localStorage';
+
 import setFilmToLocalStorage from './setFilmToLocalStorage';
 
 const ulEl = document.querySelector('.films');
