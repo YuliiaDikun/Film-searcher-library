@@ -51,7 +51,6 @@ async function onFimlsListClick(evt) {
     let iframeRef = document.querySelector('.hidden');
     trailerBtnRef.addEventListener('click', () => {
       iframeRef.classList.toggle('trailer__youtube');
-      // modal.scrollTo(0, 400);
     });
     // =================================================================
     let modal = document.querySelector('.modal-backdrop');
