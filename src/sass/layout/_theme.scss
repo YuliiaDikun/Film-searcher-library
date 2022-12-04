@@ -16,6 +16,9 @@ body.dark-theme {
   .tui-pagination .tui-page-btn {
     color: $lightGray;
   }
+  .tui-pagination .tui-page-btn:hover {
+    background-color: $accentColor;
+  }
   .modal-container {
     color: $lightGray;
     background-color: #333333;
