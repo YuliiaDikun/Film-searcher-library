@@ -10,7 +10,7 @@
   width: 97%;
   height: 44%;
   transform: translate(-50%, -50%);
-  @include media('desktop') {
+  @include media('tablet') {
     height: 83%;
   }
   @include media('desktop') {
