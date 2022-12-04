@@ -1,97 +1,70 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JS-Project</title>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="./images/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./images/favicon/favicon-16x16.png"
-    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css"
-    />
-    <link rel="stylesheet" href="./sass/index.scss" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JS-Project</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png" />
 
-    <script type="module" src="./index.js"></script>
-    <script type="module" src="./js/form.js"></script>
-    <script type="module" src="./js/spinner.js"></script>
-    <script type="module" src="./js/modal-open.js"></script>
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+  <link rel="stylesheet" href="./sass/index.scss" />
 
-  <body class="light-theme">
-    <div class="wrapper">
-      <include src="./partials/header.html"></include>
-      <div class="toolbar">
-        <!-- Разметка переключателя темы -->
-        <div class="theme-switch">
-          <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
-            <use href="./images/sprite.svg#sun"></use>
-          </svg>
+  <script type="module" src="./index.js"></script>
+  <script type="module" src="./js/form.js"></script>
+  <script type="module" src="./js/spinner.js"></script>
+  <script type="module" src="./js/modal-open.js"></script>
+</head>
 
-          <div class="theme-switch__control">
-            <input
-              class="theme-switch__toggle"
-              type="checkbox"
-              name="theme"
-              id="theme-switch-toggle"
-              aria-label="Переключить между тёмной и светлой темой"
-            />
-            <label
-              aria-hidden="true"
-              class="theme-switch__track"
-              for="theme-switch-toggle"
-            >
-            </label>
-            <div aria-hidden="true" class="theme-switch__marker"></div>
-          </div>
+<body class="light-theme">
+  <div class="wrapper">
+    <include src="./partials/header.html"></include>
+    <div class="toolbar">
+      <!-- Разметка переключателя темы -->
+      <div class="theme-switch">
+        <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+          <use href="./images/sprite.svg#sun"></use>
+        </svg>
 
-          <svg class="theme-switch__icon" aria-label="Иконка луны">
-            <use href="./images/sprite.svg#moon"></use>
-          </svg>
+        <div class="theme-switch__control">
+          <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+            aria-label="Переключить между тёмной и светлой темой" />
+          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
+          </label>
+          <div aria-hidden="true" class="theme-switch__marker"></div>
         </div>
+
+        <svg class="theme-switch__icon" aria-label="Иконка луны">
+          <use href="./images/sprite.svg#moon"></use>
+        </svg>
       </div>
-
-      <main>
-        <!-- ❗️❗️❗️ Add partials like so for every page -->
-        <!-- <include src="./partials/example.html"></include> -->
-
-        <include src="./partials/gallery.html"></include>
-        <include src="./partials/pagination.html"></include>
-      </main>
-      <footer>
-        <include src="./partials/footer.html"></include>
-      </footer>
     </div>
-    <include src="./partials/modal-team.html"></include>
-    <div class="spinner-backdrop is-closed">
-      <div id="foo"></div>
-    </div>
-    <button id="myBtn">
-      <svg class="top-btn">
-        <use href="./images/sprite.svg#top"></use>
-      </svg>
-    </button>
-  </body>
+
+    <main>
+      <!-- ❗️❗️❗️ Add partials like so for every page -->
+      <!-- <include src="./partials/example.html"></include> -->
+      <include src="./partials/modal-sign.html"></include>
+      <include src="./partials/gallery.html"></include>
+      <include src="./partials/pagination.html"></include>
+    </main>
+    <footer>
+      <include src="./partials/footer.html"></include>
+    </footer>
+  </div>
+  <include src="./partials/modal-team.html"></include>
+  <div class="spinner-backdrop is-closed">
+    <div id="foo"></div>
+  </div>
+  <button id="myBtn">
+    <svg class="top-btn">
+      <use href="./images/sprite.svg#top"></use>
+    </svg>
+  </button>
+</body>
+
 </html>
