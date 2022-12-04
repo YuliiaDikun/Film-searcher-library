@@ -1,6 +1,10 @@
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+}
 .modal-backdrop.is-hidden .modal-container {
   transform: translate(-50%, -50%) scale(0.9);
 }
+
 .modal-container {
   position: absolute;
   top: 56%;

@@ -11,7 +11,7 @@
 
 .modal__team {
   position: absolute;
-  top: 200%;
+  top: 130%;
   left: 50%;
   transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate(-50%, -50%) scale(1);
@@ -24,7 +24,7 @@
   width: 280px;
   @include media('tablet') {
     width: 704px;
-    top: 125%;
+    top: 85%;
   }
   @include media('desktop') {
     min-width: 806px;
