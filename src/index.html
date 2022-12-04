@@ -37,16 +37,42 @@
     <script type="module" src="./index.js"></script>
     <script type="module" src="./js/form.js"></script>
     <script type="module" src="./js/spinner.js"></script>
-    <script type="module" src="./js/getGenres.js"></script>
-    <script type="module" src="./js/localStorage.js"></script>
     <script type="module" src="./js/modal-open.js"></script>
   </head>
 
-  <body>
+  <body class="light-theme">
     <div class="wrapper">
-      <header>
-        <include src="./partials/header.html"></include>
-      </header>
+      <include src="./partials/header.html"></include>
+      <div class="toolbar">
+        <!-- Разметка переключателя темы -->
+        <div class="theme-switch">
+          <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+            <use href="./images/sprite.svg#sun"></use>
+          </svg>
+
+          <div class="theme-switch__control">
+            <input
+              class="theme-switch__toggle"
+              type="checkbox"
+              name="theme"
+              id="theme-switch-toggle"
+              aria-label="Переключить между тёмной и светлой темой"
+            />
+            <label
+              aria-hidden="true"
+              class="theme-switch__track"
+              for="theme-switch-toggle"
+            >
+            </label>
+            <div aria-hidden="true" class="theme-switch__marker"></div>
+          </div>
+
+          <svg class="theme-switch__icon" aria-label="Иконка луны">
+            <use href="./images/sprite.svg#moon"></use>
+          </svg>
+        </div>
+      </div>
+
       <main>
         <!-- ❗️❗️❗️ Add partials like so for every page -->
         <!-- <include src="./partials/example.html"></include> -->
@@ -62,5 +88,10 @@
     <div class="spinner-backdrop is-closed">
       <div id="foo"></div>
     </div>
+    <button id="myBtn">
+      <svg class="top-btn">
+        <use href="./images/sprite.svg#top"></use>
+      </svg>
+    </button>
   </body>
 </html>

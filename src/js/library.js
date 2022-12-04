@@ -5,6 +5,8 @@ import fixObject from './fixObject';
 import { setLocalStorage, getLocalStorage } from './localStorage';
 import filmLibraryCard from '../templates/filmLibraryCard.hbs';
 import setFilmToLocalStorage from './setFilmToLocalStorage';
+import './theme';
+import './topBtn';
 
 const watchedLibraryBtn = document.querySelector('[data-watched]');
 const queueLibraryBtn = document.querySelector('[data-queue]');

@@ -5,6 +5,8 @@ import Notiflix from 'notiflix';
 import { createMarkUp } from './js/createMarkUp';
 import { createPagination } from './js/pagination';
 import { spinnerPlay, spinnerStop } from './js/spinner.js';
+import './js/theme';
+import './js/topBtn';
 import './js/form';
 import './js/pagination';
 
@@ -18,7 +20,7 @@ async function initPage() {
     spinnerPlay();
     const { page, results, total_pages, total_results } =
       await filmAPI.getPopularFilms();
-    const correctFilmsList = fixArray(results);
+    const correctFilmsList = await fixArray(results);
     const markUp = createMarkUp(correctFilmsList);
     ulEl.insertAdjacentHTML('beforeend', markUp);
     createPagination(total_results);

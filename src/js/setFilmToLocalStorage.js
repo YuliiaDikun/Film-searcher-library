@@ -7,7 +7,7 @@ export default function setFilmToLocalStorage(localKey, filmId, filmObj) {
   if (!watchedLocalArray.length) {
     watchedLocalArray.push(filmObj);
     setLocalStorage(localKey, watchedLocalArray);
-    Notiflix.Notify.success('Success!  The movie has been added to the list');
+    Notiflix.Notify.success('Success! The movie has been added to the list.');
   } else {
     const hasId = watchedLocalArray.some(film => film.id === Number(filmId));
     if (hasId) {
@@ -16,7 +16,7 @@ export default function setFilmToLocalStorage(localKey, filmId, filmObj) {
     if (!hasId) {
       watchedLocalArray.push(filmObj);
       setLocalStorage(localKey, watchedLocalArray);
-      Notiflix.Notify.success('Success!  The movie has been added to the list');
+      Notiflix.Notify.success('Success! The movie has been added to the list.');
     }
   }
 }

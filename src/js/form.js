@@ -27,31 +27,30 @@ function createQueryPagination(total_results) {
     centerAlign: false,
   });
 
-  instance.on('afterMove', onInstanceEvent);
-}
+  instance.on('afterMove', async function onInstanceEvent(event) {
+    try {
+      ulEl.replaceChildren([]);
+      currentPage = event.page;
+      spinnerPlay();
+      const { results } = await filmAPIByQuery.getFilmByQuery(currentPage);
 
-async function onInstanceEvent(event) {
-  try {
-    ulEl.replaceChildren([]);
-    currentPage = event.page;
-    spinnerPlay();
-    const { results } = await filmAPIByQuery.getFilmByQuery(currentPage);
-
-    const correctFilmsList = fixArray(results);
-    const markUp = createMarkUp(correctFilmsList);
-    ulEl.insertAdjacentHTML('beforeend', markUp);
-  } catch (error) {
-    Notify.failure(error.message);
-  } finally {
-    spinnerStop();
-  }
+      const correctFilmsList = await fixArray(results);
+      console.log(correctFilmsList);
+      const markUp = createMarkUp(correctFilmsList);
+      ulEl.insertAdjacentHTML('beforeend', markUp);
+    } catch (error) {
+      Notiflix.Notify.failure(error.message);
+    } finally {
+      spinnerStop();
+    }
+  });
 }
 
 async function onFormInput(e) {
   try {
     if (!e.target.value) {
       const { results, total_results } = await filmAPIByQuery.getPopularFilms();
-      const correctFilmsList = fixArray(results);
+      const correctFilmsList = await fixArray(results);
       const markUp = createMarkUp(correctFilmsList);
       ulEl.innerHTML = markUp;
       createPagination(total_results);
@@ -61,7 +60,7 @@ async function onFormInput(e) {
       filmAPIByQuery.query = searchFilm;
 
       const { results, total_results } = await filmAPIByQuery.getFilmByQuery();
-      const correctFilmsList = fixArray(results);
+      const correctFilmsList = await fixArray(results);
       const markUp = createMarkUp(correctFilmsList);
       ulEl.innerHTML = markUp;
       createQueryPagination(total_results);

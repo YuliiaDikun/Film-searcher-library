@@ -20,22 +20,21 @@ export function createPagination(total_results) {
     centerAlign: false,
   });
 
-  instance.on('afterMove', onInstansEvent);
-}
+  instance.on('afterMove', async function onInstansEvent(event) {
+    try {
+      ulEl.replaceChildren([]);
 
-async function onInstansEvent(event) {
-  try {
-    ulEl.replaceChildren([]);
-    currentPage = event.page;
-    spinnerPlay();
-    const { results } = await filmAPI.getPopularFilms(currentPage);
+      currentPage = event.page;
+      spinnerPlay();
+      const { results } = await filmAPI.getPopularFilms(currentPage);
 
-    const correctFilmsList = fixArray(results);
-    const markUp = createMarkUp(correctFilmsList);
-    ulEl.insertAdjacentHTML('beforeend', markUp);
-  } catch (error) {
-    Notify.failure(error.message);
-  } finally {
-    spinnerStop();
-  }
+      const correctFilmsList = await fixArray(results);
+      const markUp = createMarkUp(correctFilmsList);
+      ulEl.insertAdjacentHTML('beforeend', markUp);
+    } catch (error) {
+      Notiflix.Notify.failure(error.message);
+    } finally {
+      spinnerStop();
+    }
+  });
 }

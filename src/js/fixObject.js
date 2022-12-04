@@ -1,7 +1,3 @@
-import { SESSION_KEY } from './getGenres';
-const genresListSaved = sessionStorage.getItem(SESSION_KEY);
-const parsedGenresList = JSON.parse(genresListSaved);
-
 export default function fixObject(film) {
   if (film.vote_average) {
     const vote = film.vote_average;
