@@ -11,6 +11,7 @@ import './topBtn';
 const watchedLibraryBtn = document.querySelector('[data-watched]');
 const queueLibraryBtn = document.querySelector('[data-queue]');
 const ulEl = document.querySelector('.films');
+const modalContainer = document.querySelector('#js-film-modal');
 
 const LOCAL_WATCHED = 'watchedList';
 const LOCAL_QUEUE = 'queueList';
@@ -73,54 +74,38 @@ async function onUlElClick(e) {
 
     const filmMarkUp = filmCard(fixedFilm);
 
-    document.querySelector('body').insertAdjacentHTML('beforeend', filmMarkUp);
-
+    modalContainer.innerHTML = filmMarkUp;
+    modalContainer.classList.remove('is-hidden');
     let trailerBtnRef = document.querySelector('.trailerShow');
     let iframeRef = document.querySelector('.hidden');
     trailerBtnRef.addEventListener('click', () => {
       iframeRef.classList.toggle('trailer__youtube');
     });
 
-    let modal = document.querySelector('.modal-backdrop');
     let watchedBtn = document.querySelector('[data-name="watched"]');
     let queueBtn = document.querySelector('[data-name="queue"]');
     watchedBtn.textContent = 'REMOVE';
     if (selectedList === 'queue') {
       queueBtn.textContent = 'ADD TO WATCHED';
     }
-    const onClose = event => {
-      if (event.code === 'Escape') {
-        modal.remove();
-        document.removeEventListener('keydown', onClose);
-      }
-    };
-    const onModalFilmClick = event => {
-      if (event.target.nodeName === 'path' || event.target.nodeName === 'svg') {
-        modal.remove();
-        document.removeEventListener('keydown', onClose);
-      }
-      if (event.target === event.currentTarget) {
-        modal.remove();
-        document.removeEventListener('keydown', onClose);
-      }
-    };
+
     const onWatchedBtn = event => {
       if (selectedList === 'watched') {
-        removeFromLocal(LOCAL_WATCHED, id, item, modal);
+        removeFromLocal(LOCAL_WATCHED, id, item, modalContainer);
       } else {
-        removeFromLocal(LOCAL_QUEUE, id, item, modal);
+        removeFromLocal(LOCAL_QUEUE, id, item, modalContainer);
       }
     };
     const onQueueBtn = event => {
       if (selectedList === 'queue') {
         setFilmToLocalStorage(LOCAL_WATCHED, id, fixedFilm, onClose);
-        removeFromLocal(LOCAL_QUEUE, id, item, modal);
+        removeFromLocal(LOCAL_QUEUE, id, item, modalContainer);
       } else {
         setFilmToLocalStorage(LOCAL_QUEUE, id, fixedFilm, onClose);
-        removeFromLocal(LOCAL_WATCHED, id, item, modal);
+        removeFromLocal(LOCAL_WATCHED, id, item, modalContainer);
       }
     };
-    modal.addEventListener('click', onModalFilmClick);
+    modalContainer.addEventListener('click', onModalFilmClick);
     document.addEventListener('keydown', onClose);
     watchedBtn.addEventListener('click', onWatchedBtn);
     queueBtn.addEventListener('click', onQueueBtn);
@@ -134,8 +119,8 @@ function removeFromLocal(localKey, filmId, li, modal, onClose) {
   const index = watchedArray.findIndex(film => film.id === Number(filmId));
   watchedArray.splice(index, 1);
   setLocalStorage(localKey, watchedArray);
+  closeModal();
   li.remove();
-  modal.remove();
   document.removeEventListener('keydown', onClose);
 }
 
@@ -149,4 +134,23 @@ function createFilmList(localKey) {
     .map(film => filmLibraryCard(film))
     .join('');
   ulEl.insertAdjacentHTML('beforeend', watchedMarkUp);
+}
+function closeModal() {
+  modalContainer.innerHTML = '';
+  modalContainer.classList.add('is-hidden');
+  document.removeEventListener('keydown', onClose);
+  modalContainer.removeEventListener('click', onModalFilmClick);
+}
+function onClose(event) {
+  if (event.code === 'Escape') {
+    closeModal();
+  }
+}
+function onModalFilmClick(event) {
+  if (event.target.nodeName === 'path' || event.target.nodeName === 'svg') {
+    closeModal();
+  }
+  if (event.target === event.currentTarget) {
+    closeModal();
+  }
 }

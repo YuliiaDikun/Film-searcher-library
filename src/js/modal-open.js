@@ -6,6 +6,7 @@ import fixObject from './fixObject';
 import setFilmToLocalStorage from './setFilmToLocalStorage';
 
 const ulEl = document.querySelector('.films');
+const modalContainer = document.querySelector('#js-film-modal');
 const LOCAL_WATCHED = 'watchedList';
 const LOCAL_QUEUE = 'queueList';
 
@@ -45,31 +46,38 @@ async function onFimlsListClick(evt) {
     fixedFilm.movie = movieLink;
 
     const filmMarkUp = filmCard(fixedFilm);
-    document.querySelector('body').insertAdjacentHTML('beforeend', filmMarkUp);
+
+    modalContainer.innerHTML = filmMarkUp;
 
     let trailerBtnRef = document.querySelector('.trailerShow');
     let iframeRef = document.querySelector('.hidden');
-    trailerBtnRef.addEventListener('click', () => {
+
+    modalContainer.classList.remove('is-hidden');
+    modalContainer.addEventListener('click', onModalFilmClick);
+    document.addEventListener('keydown', onClose);
+    trailerBtnRef.addEventListener('click', toggleIframe);
+
+    function toggleIframe() {
       iframeRef.classList.toggle('trailer__youtube');
-    });
-    // =================================================================
-    let modal = document.querySelector('.modal-backdrop');
-
-    const onClose = event => {
+    }
+    function closeModal() {
+      modalContainer.innerHTML = '';
+      modalContainer.classList.add('is-hidden');
+      document.removeEventListener('keydown', onClose);
+      modalContainer.removeEventListener('click', onModalFilmClick);
+      trailerBtnRef.removeEventListener('click', toggleIframe);
+    }
+    function onClose(event) {
       if (event.code === 'Escape') {
-        modal.remove();
-        document.removeEventListener('keydown', onClose);
+        closeModal();
       }
-    };
-
-    const onModalFilmClick = event => {
+    }
+    function onModalFilmClick(event) {
       if (event.target.nodeName === 'path' || event.target.nodeName === 'svg') {
-        modal.remove();
-        document.removeEventListener('keydown', onClose);
+        closeModal();
       }
       if (event.target === event.currentTarget) {
-        modal.remove();
-        document.removeEventListener('keydown', onClose);
+        closeModal();
       }
 
       if (event.target.dataset.name === 'watched') {
@@ -78,9 +86,7 @@ async function onFimlsListClick(evt) {
       if (event.target.dataset.name === 'queue') {
         setFilmToLocalStorage(LOCAL_QUEUE, id, fixedFilm);
       }
-    };
-    modal.addEventListener('click', onModalFilmClick);
-    document.addEventListener('keydown', onClose);
+    }
   } catch (error) {
     Notiflix.Notify.failure(error.message);
   }
