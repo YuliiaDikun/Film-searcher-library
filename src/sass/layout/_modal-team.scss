@@ -68,10 +68,12 @@
 
 .team__member-img {
   width: 200px;
+  height: 200px;
   border-radius: 50%;
   margin-bottom: 30px;
   margin-right: auto;
   margin-left: auto;
+  object-fit: cover;
 }
 
 .member__name {
