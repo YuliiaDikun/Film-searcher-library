@@ -24,12 +24,35 @@ async function onFimlsListClick(evt) {
 
     filmAPIByID.idFilm = id;
     const film = await filmAPIByID.getFilmByID();
+    // =============================================================
+    const video = await filmAPIByID.getTrailerById();
+    let arr = video.results;
+    function findTrailer(arr) {
+      return arr
+        .map(el => {
+          return el;
+        })
+        .find(el => el.name === 'Official Trailer');
+    }
+    let objectWithTrailer = findTrailer(arr);
+    let trailerKey = objectWithTrailer.key;
+    function youtubeLink(videoKey) {
+      return `https://www.youtube.com/embed/${videoKey}`;
+    }
+    const movieLink = youtubeLink(trailerKey);
 
     const fixedFilm = fixObject(film);
-    const filmMarkUp = filmCard(fixedFilm);
+    fixedFilm.movie = movieLink;
 
+    const filmMarkUp = filmCard(fixedFilm);
     document.querySelector('body').insertAdjacentHTML('beforeend', filmMarkUp);
 
+    let trailerBtnRef = document.querySelector('.trailerShow');
+    let iframeRef = document.querySelector('.hidden');
+    trailerBtnRef.addEventListener('click', () => {
+      iframeRef.classList.toggle('trailer__youtube');
+    });
+    // =================================================================
     let modal = document.querySelector('.modal-backdrop');
 
     const onClose = event => {

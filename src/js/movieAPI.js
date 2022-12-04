@@ -38,4 +38,10 @@ export default class FilmApi {
     );
     return data;
   }
+  async getTrailerById() {
+    const { data } = await axios.get(
+      `/movie/${this.id}/videos?api_key=${this.#API_KEY}&language=en-US`
+    );
+    return data;
+  }
 }

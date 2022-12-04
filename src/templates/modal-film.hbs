@@ -16,8 +16,7 @@
       />
     </div>
     <div class='movie-description'>
-      <h2 class='movie-name'>{{this.title
-}}</h2>
+      <h2 class='movie-name'>{{this.title}}</h2>
       <div class='grid-container'>
         <i class='movie-item_title'>Vote / Votes</i>
         <div class='value'>
@@ -39,7 +38,18 @@
       <div class='buttons-block'>
         <button class='modal-button' data-name='watched'>add to Watched</button>
         <button class='modal-button' data-name='queue'>add to queue</button>
+        <button class='modal-button trailerShow'>watch trailer</button>
       </div>
     </div>
+    <iframe
+      class='hidden'
+      height='315'
+      src='{{this.movie}}'
+      title='YouTube video player'
+      frameborder='0'
+      allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+      allowfullscreen
+    ></iframe>
   </div>
+
 </div>

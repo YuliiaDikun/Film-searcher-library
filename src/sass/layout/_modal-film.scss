@@ -48,6 +48,7 @@
 
   stroke: #000;
 }
+
 .image {
   border-radius: 5px;
 
@@ -139,6 +140,7 @@
 .buttons-block {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   margin-top: 20px;
 
