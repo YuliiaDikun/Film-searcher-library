@@ -1,20 +1,31 @@
+// .video {
+//   overflow: hidden;
+//   position: relative;
+// }
 .hidden {
   display: none;
 }
 
 .trailer__youtube {
+  object-fit: cover;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 93%;
+  height: 20%;
   display: block;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 97%;
-  height: 44%;
-  transform: translate(-50%, -50%);
+
   @include media('tablet') {
     height: 83%;
+    top: 50%;
   }
   @include media('desktop') {
-    height: 87%;
+    height: 88%;
+    width: 97%;
+  }
+  body {
+    overflow: hidden;
   }
 }
 
