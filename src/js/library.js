@@ -63,11 +63,7 @@ async function onUlElClick(e) {
         .find(el => el.name === 'Official Trailer');
     }
     let objectWithTrailer = findTrailer(arr);
-    let trailerKey = objectWithTrailer.key;
-    function youtubeLink(videoKey) {
-      return `https://www.youtube.com/embed/${videoKey}`;
-    }
-    const movieLink = youtubeLink(trailerKey);
+    const movieLink = `https://www.youtube.com/embed/${objectWithTrailer.key}`;
 
     const fixedFilm = fixObject(film);
     fixedFilm.movie = movieLink;
@@ -91,18 +87,18 @@ async function onUlElClick(e) {
 
     const onWatchedBtn = event => {
       if (selectedList === 'watched') {
-        removeFromLocal(LOCAL_WATCHED, id, item, modalContainer);
+        removeFromLocal(LOCAL_WATCHED, id, item);
       } else {
-        removeFromLocal(LOCAL_QUEUE, id, item, modalContainer);
+        removeFromLocal(LOCAL_QUEUE, id, item);
       }
     };
     const onQueueBtn = event => {
       if (selectedList === 'queue') {
-        setFilmToLocalStorage(LOCAL_WATCHED, id, fixedFilm, onClose);
-        removeFromLocal(LOCAL_QUEUE, id, item, modalContainer);
+        setFilmToLocalStorage(LOCAL_WATCHED, id, fixedFilm);
+        removeFromLocal(LOCAL_QUEUE, id, item);
       } else {
-        setFilmToLocalStorage(LOCAL_QUEUE, id, fixedFilm, onClose);
-        removeFromLocal(LOCAL_WATCHED, id, item, modalContainer);
+        setFilmToLocalStorage(LOCAL_QUEUE, id, fixedFilm);
+        removeFromLocal(LOCAL_WATCHED, id, item);
       }
     };
     modalContainer.addEventListener('click', onModalFilmClick);
@@ -114,14 +110,13 @@ async function onUlElClick(e) {
   }
 }
 
-function removeFromLocal(localKey, filmId, li, modal, onClose) {
+function removeFromLocal(localKey, filmId, li) {
   const watchedArray = getLocalStorage(localKey);
   const index = watchedArray.findIndex(film => film.id === Number(filmId));
   watchedArray.splice(index, 1);
   setLocalStorage(localKey, watchedArray);
   closeModal();
   li.remove();
-  document.removeEventListener('keydown', onClose);
 }
 
 function createFilmList(localKey) {

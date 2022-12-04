@@ -24,7 +24,6 @@ var opts = {
 const target = document.getElementById('foo');
 const spinnerBackdropEl = document.querySelector('.spinner-backdrop');
 const spinnerEl = document.querySelector('#foo');
-console.log(spinnerBackdropEl);
 const spinner = new Spinner(opts);
 
 export function spinnerPlay() {

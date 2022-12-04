@@ -36,11 +36,7 @@ async function onFimlsListClick(evt) {
         .find(el => el.name === 'Official Trailer');
     }
     let objectWithTrailer = findTrailer(arr);
-    let trailerKey = objectWithTrailer.key;
-    function youtubeLink(videoKey) {
-      return `https://www.youtube.com/embed/${videoKey}`;
-    }
-    const movieLink = youtubeLink(trailerKey);
+    const movieLink = `https://www.youtube.com/embed/${objectWithTrailer.key}`;
 
     const fixedFilm = fixObject(film);
     fixedFilm.movie = movieLink;
