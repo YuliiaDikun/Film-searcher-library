@@ -36,7 +36,7 @@ async function onFimlsListClick(evt) {
         .map(el => {
           return el;
         })
-        .find(el => el.name.includes('Trailer'));
+        .find(el => el.name.includes('Trailer') || el.name);
     }
     let objectWithTrailer = findTrailer(arr);
     console.log(objectWithTrailer);
@@ -67,6 +67,9 @@ async function onFimlsListClick(evt) {
     trailerBtnRef.addEventListener('click', toggleIframe);
 
     function toggleIframe() {
+      if (!fixedFilm.movie) {
+        Notiflix.Notify.failure('Trailer not found');
+      }
       iframeRef.classList.toggle('trailer__youtube');
     }
     function closeModal() {
