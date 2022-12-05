@@ -86,6 +86,8 @@ btn1.addEventListener('click', e => {
       const errorMessage = error.message;
       alert(errorMessage);
     });
+  const signBtn = document.querySelector('.sing-text');
+  signBtn.addEventListener('click', signOut);
   signOut(auth)
     .then(() => {
       // Sign-out successful.
@@ -94,6 +96,7 @@ btn1.addEventListener('click', e => {
       // An error happened.
     });
 });
+
 // Validate functions
 // function ValidateEmail(email) {
 //   if (
