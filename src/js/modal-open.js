@@ -21,10 +21,12 @@ async function onFimlsListClick(evt) {
     }
     const item = evt.target.closest('li');
 
-    let id = item.dataset.id;
+    const id = item.dataset.id;
 
     filmAPIByID.idFilm = id;
+
     const film = await filmAPIByID.getFilmByID();
+
     // =============================================================
     const video = await filmAPIByID.getTrailerById();
     let arr = video.results;
@@ -33,7 +35,7 @@ async function onFimlsListClick(evt) {
         .map(el => {
           return el;
         })
-        .find(el => el.name === 'Official Trailer');
+        .find(el => el.name.includes('Official Trailer'));
     }
     let objectWithTrailer = findTrailer(arr);
     const movieLink = `https://www.youtube.com/embed/${objectWithTrailer.key}`;
