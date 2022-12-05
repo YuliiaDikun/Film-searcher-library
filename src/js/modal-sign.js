@@ -2,7 +2,13 @@ const btn1 = document.querySelector('.btn_1');
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
+import { getDatabase, set, ref, update } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,21 +27,80 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const database = getDatabase(app);
 
-btn1.addEventListener('click', event => {
-  event.preventDefault();
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#password').value;
+btn1.addEventListener('click', e => {
+  e.preventDefault();
+  let email = document.querySelector('#email').value;
+  let password = document.querySelector('#password').value;
+
+  //sign up user
   createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       // Signed in
       const user = userCredential.user;
-      alert('User created succesfully!');
+      // ... user.uid
+      set(ref(database, 'users/' + user.uid), {
+        email: email,
+        password: password,
+      })
+        .then(() => {
+          // Data saved successfully!
+          alert('user created successfully');
+        })
+        .catch(error => {
+          // The write failed...
+          alert(error);
+        });
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert('Error!');
-      console.log(Error);
+      // ..
+      alert(errorMessage);
+    });
+
+  // log in user
+  signInWithEmailAndPassword(auth, email, password)
+    .then(userCredential => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+
+      // save log in details into real time database
+      var lgDate = new Date();
+      update(ref(database, 'users/' + user.uid), {
+        last_login: lgDate,
+      })
+        .then(() => {
+          // Data saved successfully!
+          alert('user logged in successfully');
+        })
+        .catch(error => {
+          // The write failed...
+          alert(error);
+        });
+    })
+    .catch(error => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    });
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch(error => {
+      // An error happened.
     });
 });
+// Validate functions
+// function ValidateEmail(email) {
+//   if (
+//     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value)
+//   ) {
+//     return true;
+//   }
+//   alert('You have entered an invalid email address!');
+//   return false;
+// }
