@@ -8,7 +8,7 @@ export default async function fixArray(array) {
   try {
     const { genres } = await filmGenre.getGenres();
     localStorage.setItem(SESSION_KEY, JSON.stringify(genres));
-    localStorage.setItem(FAV_KEY, JSON.stringify({}));
+    localStorage.setItem(FAV_KEY, JSON.stringify([]));
     const genresListSaved = localStorage.getItem(SESSION_KEY);
     const parsedGenresList = JSON.parse(genresListSaved);
     if (parsedGenresList) {

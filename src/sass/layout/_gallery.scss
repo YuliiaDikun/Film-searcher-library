@@ -92,10 +92,16 @@
   background-color: $accentColor;
   margin-left: 5px;
 }
+
 .films__fav-icon {
   position: absolute;
-  top: -12px;
-  right: -7px;
+  bottom: -4px;
+  right: -5px;
   scale: 0.5;
-  fill: red;
+  fill: grey;
+  cursor: pointer;
+}
+.active {
+  fill: $accentColor;
+  scale: 0.6;
 }
