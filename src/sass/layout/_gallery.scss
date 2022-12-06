@@ -53,6 +53,7 @@
   }
 }
 .films__description {
+  position: relative;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -90,4 +91,11 @@
   color: $whiteColor;
   background-color: $accentColor;
   margin-left: 5px;
+}
+.films__fav-icon {
+  position: absolute;
+  top: -12px;
+  right: -7px;
+  scale: 0.5;
+  fill: red;
 }
