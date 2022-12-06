@@ -30,15 +30,26 @@ async function onFimlsListClick(evt) {
     // =============================================================
     const video = await filmAPIByID.getTrailerById();
     let arr = video.results;
+    console.log(arr);
     function findTrailer(arr) {
       return arr
         .map(el => {
           return el;
         })
-        .find(el => el.name.includes('Official Trailer'));
+        .find(el => el.name.includes('Trailer') || el.name);
     }
     let objectWithTrailer = findTrailer(arr);
-    const movieLink = `https://www.youtube.com/embed/${objectWithTrailer.key}`;
+    console.log(objectWithTrailer);
+
+    function trailerCheck(object) {
+      if (!objectWithTrailer) {
+        Notiflix.Notify.failure('Trailer did not find');
+      } else {
+        return `https://www.youtube.com/embed/${objectWithTrailer.key}`;
+      }
+    }
+    const movieLink = trailerCheck(objectWithTrailer);
+    // const movieLink = `https://www.youtube.com/embed/${objectWithTrailer.key}`;
 
     const fixedFilm = fixObject(film);
     fixedFilm.movie = movieLink;
@@ -56,6 +67,9 @@ async function onFimlsListClick(evt) {
     trailerBtnRef.addEventListener('click', toggleIframe);
 
     function toggleIframe() {
+      if (!fixedFilm.movie) {
+        Notiflix.Notify.failure('Trailer did not find');
+      }
       iframeRef.classList.toggle('trailer__youtube');
     }
     function closeModal() {
