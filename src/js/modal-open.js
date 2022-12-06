@@ -43,7 +43,7 @@ async function onFimlsListClick(evt) {
 
     function trailerCheck(object) {
       if (!objectWithTrailer) {
-        Notiflix.Notify.failure('Trailer not found');
+        Notiflix.Notify.failure('Trailer did not find');
       } else {
         return `https://www.youtube.com/embed/${objectWithTrailer.key}`;
       }
@@ -68,7 +68,7 @@ async function onFimlsListClick(evt) {
 
     function toggleIframe() {
       if (!fixedFilm.movie) {
-        Notiflix.Notify.failure('Trailer not found');
+        Notiflix.Notify.failure('Trailer did not find');
       }
       iframeRef.classList.toggle('trailer__youtube');
     }
