@@ -8,7 +8,7 @@
 .modal-container {
   position: absolute;
   top: 56%;
-
+  border-radius: 5px;
   left: 50%;
   transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate(-50%, -50%) scale(1);

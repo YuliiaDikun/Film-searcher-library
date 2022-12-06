@@ -29,6 +29,7 @@ async function onFimlsListClick(evt) {
 
     // =============================================================
     const video = await filmAPIByID.getTrailerById();
+
     let arr = video.results;
     function findTrailer(arr) {
       return arr
@@ -41,6 +42,7 @@ async function onFimlsListClick(evt) {
     const movieLink = `https://www.youtube.com/embed/${objectWithTrailer.key}`;
 
     const fixedFilm = fixObject(film);
+
     fixedFilm.movie = movieLink;
 
     const filmMarkUp = filmCard(fixedFilm);
