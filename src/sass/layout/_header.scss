@@ -152,3 +152,27 @@
   line-height: calc(14 / 16);
   color: $redLineColor;
 }
+.sign-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 40px;
+}
+.sign-box {
+  width: 30px;
+  height: 30px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+.sing-btn {
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
+
+  &:hover,
+  &:focus {
+    border: none;
+    background-color: $accentColor;
+    color: $whiteColor;
+  }
+}

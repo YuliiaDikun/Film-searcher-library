@@ -1,109 +1,49 @@
-const btn1 = document.querySelector('.btn_1');
+import firestore from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/messaging';
+import 'firebase/storage';
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from 'firebase/auth';
-import { getDatabase, set, ref, update } from 'firebase/database';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+const singInEmailBnt = document.querySelector('.singInEmailBnt');
+const openSignModalBtn = document.querySelector('.sing-btn');
+const modalSignBackdrop = document.querySelector('.modal-sign-backdrop');
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: 'AIzaSyAkvDQ6iF3wRHd3Zm0o5l-VTvkNOeKKXwk',
-  authDomain: 'movie-26873.firebaseapp.com',
-  projectId: 'movie-26873',
-  storageBucket: 'movie-26873.appspot.com',
-  messagingSenderId: '926047790761',
-  appId: '1:926047790761:web:9203dceeeffec26a94ebb8',
-  measurementId: 'G-S7W7TJ4K47',
+const openSignModal = () => {
+  modalSignBackdrop.style.display = 'flex';
+  openSignModalBtn.removeEventListener('click', openSignModal);
+  modalSignBackdrop.addEventListener('click', closeSingModal);
+  document.addEventListener('keydown', closeSingModal);
+  singInEmailBnt.addEventListener('click', onsingInEmailBntClick);
+};
+openSignModalBtn.addEventListener('click', openSignModal);
+
+const closeSingModal = event => {
+  if (
+    event.code === 'Escape' ||
+    event.target.className == 'modal-sign-backdrop'
+  )
+    modalSignBackdrop.style.display = 'none';
+  openSignModalBtn.addEventListener('click', openSignModal);
+  //   modalSignBackdrop.removeEventListener('click', closeSingModal);
+  //   document.removeEventListener('keydown', closeSingModal);
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const database = getDatabase(app);
-
-btn1.addEventListener('click', e => {
-  e.preventDefault();
-  let email = document.querySelector('#email').value;
-  let password = document.querySelector('#password').value;
-
-  //sign up user
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      // Signed in
-      const user = userCredential.user;
-      // ... user.uid
-      set(ref(database, 'users/' + user.uid), {
-        email: email,
-        password: password,
-      })
-        .then(() => {
-          // Data saved successfully!
-          alert('user created successfully');
-        })
-        .catch(error => {
-          // The write failed...
-          alert(error);
-        });
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-      alert(errorMessage);
-    });
-
-  // log in user
-  signInWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-
-      // save log in details into real time database
-      var lgDate = new Date();
-      update(ref(database, 'users/' + user.uid), {
-        last_login: lgDate,
-      })
-        .then(() => {
-          // Data saved successfully!
-          alert('user logged in successfully');
-        })
-        .catch(error => {
-          // The write failed...
-          alert(error);
-        });
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorMessage);
-    });
-  const signBtn = document.querySelector('.sing-text');
-  signBtn.addEventListener('click', signOut);
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-    })
-    .catch(error => {
-      // An error happened.
-    });
-});
-
-// Validate functions
-// function ValidateEmail(email) {
-//   if (
-//     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value)
-//   ) {
-//     return true;
-//   }
-//   alert('You have entered an invalid email address!');
-//   return false;
-// }
+function onsingInEmailBntClick(event) {
+  event.preventDefault();
+  const email = document.querySelector('#email').value;
+  const password = document.querySelector('#password').value;
+  authUserWithEmailAndPassword(email, password).then(token => {});
+}
+export function authUserWithEmailAndPassword(email, password) {
+  const apiKey = 'AIzaSyAkvDQ6iF3wRHd3Zm0o5l-VTvkNOeKKXwk';
+  return fetch(
+    `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
+    {
+      method: 'POST',
+      body: JSON.stringify({ email, password, returnSecureTocken: true }),
+      headers: {},
+    }
+  )
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
