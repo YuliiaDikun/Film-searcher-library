@@ -69,6 +69,7 @@ async function onFimlsListClick(evt) {
     function toggleIframe() {
       if (!fixedFilm.movie) {
         Notiflix.Notify.failure('Trailer did not find');
+        trailerBtnRef.disabled = true;
       }
       iframeRef.classList.toggle('trailer__youtube');
     }
