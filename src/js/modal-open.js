@@ -13,7 +13,7 @@ const LOCAL_WATCHED = 'watchedList';
 const LOCAL_QUEUE = 'queueList';
 const FAV_KEY = 'favouriteMovies';
 
-let favArray = getLocalStorage(FAV_KEY);
+let favObj = getLocalStorage(FAV_KEY);
 
 ulEl.addEventListener('click', onFimlsListClick);
 
@@ -34,10 +34,11 @@ async function onFimlsListClick(evt) {
     if (evt.target.nodeName === 'svg' || evt.target.nodeName === 'path') {
       let favIcon = evt.target.closest('svg');
       favIcon.classList.toggle('active');
-      favIcon.classList.contains('active')
-        ? genres.forEach(genre => favArray.push(genre))
-        : favArray;
-      setLocalStorage(FAV_KEY, favArray);
+      let favId = Object.keys(favObj);
+      if (favIcon.classList.contains('active') && !favId.includes(id)) {
+        genres.forEach(genre => (favObj[id] = genre));
+        setLocalStorage(FAV_KEY, favObj);
+      }
     } else {
       const video = await filmAPIByID.getTrailerById();
 

@@ -43,4 +43,10 @@ export default class FilmApi {
     );
     return data;
   }
+  async getFavMovies(genres, page = 1) {
+    const { data } = await axios.get(
+      `${this.BASE_URL}discover/movie?api_key=${this.API_KEY}&with_genres='${genres}'&page=${page}`
+    );
+    return data;
+  }
 }
