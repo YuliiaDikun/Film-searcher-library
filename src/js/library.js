@@ -5,26 +5,37 @@ import fixObject from './fixObject';
 import { setLocalStorage, getLocalStorage } from './localStorage';
 import filmLibraryCard from '../templates/filmLibraryCard.hbs';
 import setFilmToLocalStorage from './setFilmToLocalStorage';
+import { getFavGenres } from './getFavGenres';
+import { spinnerPlay, spinnerStop } from './spinner.js';
+import fixArray from './fixArray';
+import { createPagination } from './pagination';
+import { createMarkUp } from './createMarkUp';
 import './theme';
 import './topBtn';
 
 const watchedLibraryBtn = document.querySelector('[data-watched]');
 const queueLibraryBtn = document.querySelector('[data-queue]');
+const favBtn = document.querySelector('[data-fav]');
+const h2Rec = document.querySelector('.recom');
+
 const ulEl = document.querySelector('.films');
 const modalContainer = document.querySelector('#js-film-modal');
 
 const LOCAL_WATCHED = 'watchedList';
 const LOCAL_QUEUE = 'queueList';
 const LOCAL_LIST = 'selectedList';
+const FAV_KEY = 'favouriteMovies';
 
 watchedLibraryBtn.addEventListener('click', onWatchedLibrary);
 queueLibraryBtn.addEventListener('click', onQueueLibrary);
+favBtn.addEventListener('click', onFavBtn);
 ulEl.addEventListener('click', onUlElClick);
 
 const filmAPIByID = new FilmApi();
 
 function onWatchedLibrary() {
   queueLibraryBtn.classList.remove('is-active');
+  favBtn.classList.remove('is-active');
   watchedLibraryBtn.classList.add('is-active');
 
   createFilmList(LOCAL_WATCHED);
@@ -33,10 +44,39 @@ function onWatchedLibrary() {
 
 function onQueueLibrary() {
   watchedLibraryBtn.classList.remove('is-active');
+  favBtn.classList.remove('is-active');
   queueLibraryBtn.classList.add('is-active');
 
   createFilmList(LOCAL_QUEUE);
   setLocalStorage(LOCAL_LIST, 'queue');
+}
+async function onFavBtn() {
+  try {
+    setLocalStorage(LOCAL_LIST, 'fav');
+    ulEl.innerHTML = '';
+    watchedLibraryBtn.classList.remove('is-active');
+    queueLibraryBtn.classList.remove('is-active');
+    favBtn.classList.add('is-active');
+    const favGenres = getFavGenres();
+    if (!favGenres.length) {
+      Notiflix.Notify.failure("We don't have any recomendations for you :(");
+      return;
+    }
+    h2Rec.classList.remove('visually-hidden');
+
+    spinnerPlay();
+
+    const { results, total_results } = await filmAPIByID.getFavMovies(
+      favGenres
+    );
+    const correctFilmsList = await fixArray(results);
+    const markUp = createMarkUp(correctFilmsList);
+    ulEl.insertAdjacentHTML('beforeend', markUp);
+  } catch (error) {
+    Notiflix.Notify.failure(error.message);
+  } finally {
+    spinnerStop();
+  }
 }
 
 async function onUlElClick(e) {
@@ -54,18 +94,29 @@ async function onUlElClick(e) {
     const film = await filmAPIByID.getFilmByID();
 
     const video = await filmAPIByID.getTrailerById();
+
     let arr = video.results;
+
     function findTrailer(arr) {
       return arr
         .map(el => {
           return el;
         })
-        .find(el => el.name === 'Official Trailer');
+        .find(el => el.name.includes('Trailer') || el.name);
     }
     let objectWithTrailer = findTrailer(arr);
-    const movieLink = `https://www.youtube.com/embed/${objectWithTrailer.key}`;
+
+    function trailerCheck(object) {
+      if (!object) {
+        Notiflix.Notify.failure('Oops! Trailer did not find...');
+      } else {
+        return `https://www.youtube.com/embed/${object.key}`;
+      }
+    }
+    const movieLink = trailerCheck(objectWithTrailer);
 
     const fixedFilm = fixObject(film);
+
     fixedFilm.movie = movieLink;
 
     const filmMarkUp = filmCard(fixedFilm);
