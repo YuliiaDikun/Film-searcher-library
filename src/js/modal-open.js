@@ -68,21 +68,29 @@ async function onFimlsListClick(evt) {
 
       const filmMarkUp = filmCard(fixedFilm);
 
-      modalContainer.innerHTML = filmMarkUp;
 
-      let trailerBtnRef = document.querySelector('.trailerShow');
-      let iframeRef = document.querySelector('.hidden');
-
-      modalContainer.classList.remove('is-hidden');
-      modalContainer.addEventListener('click', onModalFilmClick);
-      document.addEventListener('keydown', onClose);
-      trailerBtnRef.addEventListener('click', toggleIframe);
-
-      function toggleIframe() {
-        if (!fixedFilm.movie) {
-          Notiflix.Notify.failure('Trailer did not find');
-        }
-        iframeRef.classList.toggle('trailer__youtube');
+    function toggleIframe() {
+      if (!fixedFilm.movie) {
+        Notiflix.Notify.failure('Trailer did not find');
+        trailerBtnRef.disabled = true;
+      }
+      iframeRef.classList.toggle('trailer__youtube');
+    }
+    function closeModal() {
+      modalContainer.innerHTML = '';
+      modalContainer.classList.add('is-hidden');
+      document.removeEventListener('keydown', onClose);
+      modalContainer.removeEventListener('click', onModalFilmClick);
+      trailerBtnRef.removeEventListener('click', toggleIframe);
+    }
+    function onClose(event) {
+      if (event.code === 'Escape') {
+        closeModal();
+      }
+    }
+    function onModalFilmClick(event) {
+      if (event.target.nodeName === 'path' || event.target.nodeName === 'svg') {
+        closeModal();
       }
       function closeModal() {
         modalContainer.innerHTML = '';
