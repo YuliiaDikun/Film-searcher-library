@@ -1,5 +1,6 @@
 import FilmApi from './movieAPI';
 const SESSION_KEY = 'genresList';
+const FAV_KEY = 'favouriteMovies';
 
 const filmGenre = new FilmApi();
 
@@ -7,6 +8,7 @@ export default async function fixArray(array) {
   try {
     const { genres } = await filmGenre.getGenres();
     localStorage.setItem(SESSION_KEY, JSON.stringify(genres));
+    localStorage.setItem(FAV_KEY, JSON.stringify({}));
     const genresListSaved = localStorage.getItem(SESSION_KEY);
     const parsedGenresList = JSON.parse(genresListSaved);
     if (parsedGenresList) {
