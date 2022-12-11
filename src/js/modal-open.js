@@ -64,10 +64,13 @@ async function onFimlsListClick(evt) {
       document.addEventListener('keydown', onClose);
       trailerBtnRef.addEventListener('click', toggleIframe);
 
-      function toggleIframe() {
+      function disabledtrailerBtn() {
         if (!fixedFilm.movie) {
-          Notiflix.Notify.failure('Trailer did not find');
+          trailerBtnRef.disabled = true;
         }
+      }
+      disabledtrailerBtn();
+      function toggleIframe() {
         iframeRef.classList.toggle('trailer__youtube');
       }
       function closeModal() {

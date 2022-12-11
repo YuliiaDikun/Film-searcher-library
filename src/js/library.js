@@ -125,9 +125,17 @@ async function onUlElClick(e) {
     modalContainer.classList.remove('is-hidden');
     let trailerBtnRef = document.querySelector('.trailerShow');
     let iframeRef = document.querySelector('.hidden');
-    trailerBtnRef.addEventListener('click', () => {
+    trailerBtnRef.addEventListener('click', toggleIframe);
+
+    function disabledtrailerBtn() {
+      if (!fixedFilm.movie) {
+        trailerBtnRef.disabled = true;
+      }
+    }
+    disabledtrailerBtn();
+    function toggleIframe() {
       iframeRef.classList.toggle('trailer__youtube');
-    });
+    }
 
     let watchedBtn = document.querySelector('[data-name="watched"]');
     let queueBtn = document.querySelector('[data-name="queue"]');
