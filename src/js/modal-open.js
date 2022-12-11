@@ -67,8 +67,10 @@ async function onFimlsListClick(evt) {
       function disabledtrailerBtn() {
         if (!fixedFilm.movie) {
           trailerBtnRef.disabled = true;
+          trailerBtnRef.classList.add('noHover');
         }
       }
+
       disabledtrailerBtn();
       function toggleIframe() {
         iframeRef.classList.toggle('trailer__youtube');
