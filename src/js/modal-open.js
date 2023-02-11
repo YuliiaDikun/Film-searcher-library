@@ -28,10 +28,8 @@ async function onFimlsListClick(evt) {
     if (evt.target.nodeName === 'svg' || evt.target.nodeName === 'path') {
       let favIcon = evt.target.closest('svg');
       favIcon.classList.toggle('active');
-      if (favIcon.classList.contains('active')) {
-        const genre = genres[0];
-        setFavFilmsToLocalStorage(FAV_KEY, genre, id);
-      }
+      const genre = genres[0];
+      setFavFilmsToLocalStorage(FAV_KEY, genre, id);
     } else {
       const video = await filmAPIByID.getTrailerById();
       let arr = video.results;
