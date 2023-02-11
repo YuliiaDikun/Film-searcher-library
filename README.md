@@ -5,7 +5,9 @@ graduated from **JavaScript** course and consolidated our received knowledge in
 practice developing this graduation project. The project created by Yuliia
 Dikun, Evgeniy Pavlichenko, Oleksandr Kryvoniuk, Vitalii Bilobrov, Andriy
 Savych. Designers prepared for us 3 Versions of **team project layouts** -
-mobile, tablet, desktop. GoIT academy prepared technical tasks. ​ **Tasks:** ​
+mobile, tablet, desktop. GoIT academy prepared technical tasks.
+
+​ **Tasks:** ​
 
 - develop a website for searching a popular film;
 - give users an opportunity to search films by genres;
@@ -18,12 +20,16 @@ mobile, tablet, desktop. GoIT academy prepared technical tasks. ​ **Tasks:** �
 - develop a user authorization on website;
 - develop website themes: day/night;
 - develop pagination;
-- develop localization for language change: English/Ukrainian. ​ **During the
-  project we:** ​
+- develop localization for language change: English/Ukrainian.
+
+​ **During the project we:** ​
+
 - [x] consolidated the knowledge of HTML and CSS/SASS;
 - [x] consolidated the knowledge of JavaScript;
 - [x] worked with Parcel;
 - [x] teamwork practice with Git;
 - [x] used Scrum methodology;
 - [x] used Firebase for a user authorization and information collection. ​
-  ### Links - [Figma](<https://www.figma.com/file/IOrJziFAjQD8Xb5V1fx0ib/Filmoteka-(Copy)-(Copy)?node-id=0%3A1&t=qF5yvQdFG25xUpyC-0>), [Task](https://docs.google.com/spreadsheets/d/1Z26Jc5WlgcoD8r_Xci6R5vcCHtKFfESoJFhZQ2eh77E/edit#gid=0)
+  ### Links -
+  [Figma](<https://www.figma.com/file/IOrJziFAjQD8Xb5V1fx0ib/Filmoteka-(Copy)-(Copy)?node-id=0%3A1&t=qF5yvQdFG25xUpyC-0>),
+  [Task](https://docs.google.com/spreadsheets/d/1Z26Jc5WlgcoD8r_Xci6R5vcCHtKFfESoJFhZQ2eh77E/edit#gid=0)

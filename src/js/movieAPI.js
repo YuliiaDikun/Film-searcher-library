@@ -21,7 +21,7 @@ export default class FilmApi {
   }
   async getFilmByID() {
     const { data } = await axios.get(
-      `${this.BASE_URL}/movie/${this.id}?api_key=${this.API_KEY}`
+      `${this.BASE_URL}movie/${this.id}?api_key=${this.API_KEY}`
     );
     return data;
   }

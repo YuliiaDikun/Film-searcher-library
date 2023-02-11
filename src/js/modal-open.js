@@ -2,14 +2,16 @@ import Notiflix from 'notiflix';
 import FilmApi from './movieAPI';
 import filmCard from '../templates/modal-film.hbs';
 import fixObject from './fixObject';
-import { setLocalStorage, getLocalStorage } from './localStorage';
+
 import setFilmToLocalStorage from './setFilmToLocalStorage';
+import { setFavFilmsToLocalStorage } from './setFilmToLocalStorage';
+
 const ulEl = document.querySelector('.films');
 const modalContainer = document.querySelector('#js-film-modal');
 const LOCAL_WATCHED = 'watchedList';
 const LOCAL_QUEUE = 'queueList';
 const FAV_KEY = 'favouriteMovies';
-let favObj = getLocalStorage(FAV_KEY);
+
 ulEl.addEventListener('click', onFimlsListClick);
 const filmAPIByID = new FilmApi();
 async function onFimlsListClick(evt) {
@@ -22,13 +24,13 @@ async function onFimlsListClick(evt) {
     filmAPIByID.idFilm = id;
     const film = await filmAPIByID.getFilmByID();
     let genres = film.genres;
+
     if (evt.target.nodeName === 'svg' || evt.target.nodeName === 'path') {
       let favIcon = evt.target.closest('svg');
       favIcon.classList.toggle('active');
-      let favId = Object.keys(favObj);
-      if (favIcon.classList.contains('active') && !favId.includes(id)) {
-        genres.forEach(genre => (favObj[id] = genre));
-        setLocalStorage(FAV_KEY, favObj);
+      if (favIcon.classList.contains('active')) {
+        const genre = genres[0];
+        setFavFilmsToLocalStorage(FAV_KEY, genre, id);
       }
     } else {
       const video = await filmAPIByID.getTrailerById();
@@ -101,6 +103,6 @@ async function onFimlsListClick(evt) {
       }
     }
   } catch (error) {
-    Notiflix.Notify.failure(error.message);
+    Notiflix.Notify.failure('Oops! Something gets wrong!');
   }
 }

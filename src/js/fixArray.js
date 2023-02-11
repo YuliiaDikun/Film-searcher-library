@@ -8,11 +8,22 @@ export default async function fixArray(array) {
   try {
     const { genres } = await filmGenre.getGenres();
     localStorage.setItem(SESSION_KEY, JSON.stringify(genres));
-    localStorage.setItem(FAV_KEY, JSON.stringify({}));
+
     const genresListSaved = localStorage.getItem(SESSION_KEY);
+    const favListSaved = localStorage.getItem(FAV_KEY);
+
+    const parsedFavList = JSON.parse(favListSaved);
     const parsedGenresList = JSON.parse(genresListSaved);
+
+    const filmsId = Object.keys(parsedFavList);
+
     if (parsedGenresList) {
       return array.map(film => {
+        if (filmsId.includes(String(film.id))) {
+          film.fav = true;
+        } else {
+          film.fav = false;
+        }
         if (!film.poster_path) {
           film.poster_path =
             'https://www.drupal.org/files/project-images/broken-image.jpg';
@@ -38,6 +49,7 @@ export default async function fixArray(array) {
         } else {
           film.genre_ids = 'Not found';
         }
+
         return film;
       });
     }
