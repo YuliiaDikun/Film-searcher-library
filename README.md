@@ -22,7 +22,7 @@ mobile, tablet, desktop. GoIT academy prepared technical tasks.
 
 - [x] consolidated the knowledge of HTML and CSS/SASS;
 - [x] consolidated the knowledge of JavaScript;
-- [x] worked with Parcel;
+- [x] worked with Parcel, Axios, async/await syntax;
 - [x] teamwork practice with Git;
 - [x] used Scrum methodology;
 - [x] developed a film recommendation algorithm​
