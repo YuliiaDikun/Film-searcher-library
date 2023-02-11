@@ -14,13 +14,9 @@ mobile, tablet, desktop. GoIT academy prepared technical tasks.
 - organize user's library for collecting watched films and ones to watch later;
 - organize for user's library an opportunity to delete a movie from the library;
 - develop a movie card with a detailed description;
-- develop a movie card's slider for the next/previous card view by pushing arrow
-  buttons (left/right);
 - implement viewing of movie trailers at the user's request;
-- develop a user authorization on website;
 - develop website themes: day/night;
 - develop pagination;
-- develop localization for language change: English/Ukrainian.
 
 ​ **During the project we:** ​
 
@@ -29,7 +25,7 @@ mobile, tablet, desktop. GoIT academy prepared technical tasks.
 - [x] worked with Parcel;
 - [x] teamwork practice with Git;
 - [x] used Scrum methodology;
-- [x] used Firebase for a user authorization and information collection. ​
+- [x] developed a film recommendation algorithm​
   ### Links -
   [Figma](<https://www.figma.com/file/IOrJziFAjQD8Xb5V1fx0ib/Filmoteka-(Copy)-(Copy)?node-id=0%3A1&t=qF5yvQdFG25xUpyC-0>),
   [Task](https://docs.google.com/spreadsheets/d/1Z26Jc5WlgcoD8r_Xci6R5vcCHtKFfESoJFhZQ2eh77E/edit#gid=0)
