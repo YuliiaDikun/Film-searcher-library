@@ -66,6 +66,7 @@
   display: none;
   @include media('tablet') {
     display: block;
+    font-family: 'Great Vibes', cursive;
     margin-left: 8px;
     font-weight: 500;
     font-size: 30px;

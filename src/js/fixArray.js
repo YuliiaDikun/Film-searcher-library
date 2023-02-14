@@ -12,12 +12,11 @@ export default async function fixArray(array) {
     const genresListSaved = localStorage.getItem(SESSION_KEY);
     const favListSaved = localStorage.getItem(FAV_KEY);
 
-    const parsedFavList = JSON.parse(favListSaved);
     const parsedGenresList = JSON.parse(genresListSaved);
 
-    const filmsId = Object.keys(parsedFavList);
-
-    if (parsedGenresList) {
+    if (parsedGenresList.length) {
+      const parsedFavList = JSON.parse(favListSaved);
+      const filmsId = parsedFavList ? Object.keys(parsedFavList) : [];
       return array.map(film => {
         if (filmsId.includes(String(film.id))) {
           film.fav = true;

@@ -24,7 +24,6 @@ const modalContainer = document.querySelector('#js-film-modal');
 const LOCAL_WATCHED = 'watchedList';
 const LOCAL_QUEUE = 'queueList';
 const LOCAL_LIST = 'selectedList';
-const FAV_KEY = 'favouriteMovies';
 
 watchedLibraryBtn.addEventListener('click', onWatchedLibrary);
 queueLibraryBtn.addEventListener('click', onQueueLibrary);
@@ -37,7 +36,8 @@ function onWatchedLibrary() {
   queueLibraryBtn.classList.remove('is-active');
   favBtn.classList.remove('is-active');
   watchedLibraryBtn.classList.add('is-active');
-
+  if (!h2Rec.classList.contains('visually-hidden'))
+    h2Rec.classList.add('visually-hidden');
   createFilmList(LOCAL_WATCHED);
   setLocalStorage(LOCAL_LIST, 'watched');
 }
@@ -46,7 +46,8 @@ function onQueueLibrary() {
   watchedLibraryBtn.classList.remove('is-active');
   favBtn.classList.remove('is-active');
   queueLibraryBtn.classList.add('is-active');
-
+  if (!h2Rec.classList.contains('visually-hidden'))
+    h2Rec.classList.add('visually-hidden');
   createFilmList(LOCAL_QUEUE);
   setLocalStorage(LOCAL_LIST, 'queue');
 }
@@ -189,17 +190,20 @@ function createFilmList(localKey) {
     .join('');
   ulEl.insertAdjacentHTML('beforeend', watchedMarkUp);
 }
+
 function closeModal() {
   modalContainer.innerHTML = '';
   modalContainer.classList.add('is-hidden');
   document.removeEventListener('keydown', onClose);
   modalContainer.removeEventListener('click', onModalFilmClick);
 }
+
 function onClose(event) {
   if (event.code === 'Escape') {
     closeModal();
   }
 }
+
 function onModalFilmClick(event) {
   if (event.target.nodeName === 'path' || event.target.nodeName === 'svg') {
     closeModal();

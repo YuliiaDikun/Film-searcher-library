@@ -6,6 +6,7 @@ body.light-theme {
 body.dark-theme {
   // background-color: #333333;
   background-color: #400202;
+
   color: $whiteColor;
   .films__name {
     color: $whiteColor;
@@ -36,6 +37,10 @@ body.dark-theme {
   }
   .modal-close-btn {
     background-color: #333333;
+  }
+  footer {
+    background-color: #400202;
+    color: $whiteColor;
   }
 }
 
