@@ -1,5 +1,7 @@
 .films {
   display: flex;
+  position: relative;
+  z-index: 500;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
